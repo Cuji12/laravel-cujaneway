@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::resource('projects', ProjectController::class);
-Route::resource('blog', ProjectController::class);
+Route::resource('blog', PostController::class);

@@ -18,5 +18,10 @@ Route::get('/', function () {
     return view('site.index');
 });
 
+Route::prefix('contact')->group(function () {
+    Route::get('/', ContactController::class, 'index');
+    Route::post('/', ContactController::class, 'post');
+});
+
 Route::resource('projects', ProjectController::class);
 Route::resource('blog', PostController::class);

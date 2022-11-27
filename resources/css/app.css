@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+::selection {
+    background: #FFE8DC; /* WebKit/Blink Browsers */
+  }
+::-moz-selection {
+    background: #FFE8DC; /* Gecko Browsers */
+}
+@layer utilities {
+
+}

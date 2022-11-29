@@ -4,6 +4,7 @@
 
 * {
     font-family: 'Roboto', sans-serif;
+    font-color: #2B2B2B;
 }
 ::selection {
     background: #FFE8DC; /* WebKit/Blink Browsers */
@@ -11,6 +12,41 @@
 ::-moz-selection {
     background: #FFE8DC; /* Gecko Browsers */
 }
+footer {
+    max-width: 1024px;
+}
 @layer utilities {
-
+    .n-left-24 {
+        left: -6rem;
+    }
+    .n-right-64 {
+        right: -16rem;
+    }
+    .n-right-52 {
+        right: -13rem;
+    }
+    .n-left-80 {
+        left: -20rem;
+    }
+    .n-left-52 {
+        left: -13rem;
+    }
+    .n-left-4 {
+        left: -1rem;
+    }
+    .n-bottom-4 {
+        bottom: -1rem;
+    }
+    .w-112 {
+        width: 28rem;
+    }
+    .max-w-128 {
+        max-width: 32rem;
+    }
+    .w-128 {
+        width: 32rem;
+    }
+    .t-origin-tl {
+        transform-origin: top left;
+    }
 }

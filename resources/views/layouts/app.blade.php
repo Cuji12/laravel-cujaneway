@@ -20,72 +20,52 @@
         </style>
     </head>
     <body class="">
-        <header class="flex xl:justify-between xl:content-center xl:h-24 xl:px-12">
-            <img src="/images/logo.png" alt="Website Logo." class="h-full"/>
-            <nav class="flex">
-                <ul class="flex xl:items-center xl:justify-evenly xl:w-96">
-                    <li>
-                        <a href="@php(route('blog.index'))">Blog</a>
-                    </li>
-                    <li>
-                        <a href="@php(route('projects.index'))">Projects</a>
-                    </li>
-                    <li>
-                        <a href="@php(route('contact.index'))">Contact</a>
-                    </li>
-                    <li class="text-green">
-                        <a href="mailto:hello@cujaneway.co.uk">
-                            hello@cujaneway.co.uk
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
+        @yield('header')
 
-        <div class="container">
+        <div>
             @yield('content')
         </div>
 
-        <footer>
-            <div class="">
-                <ul>
+        <footer class="flex w-full h-96 p-6 xl:mx-auto flex-wrap xl:h-40 gap-y-12 mt-20 text-xl">
+            <div class="flex-auto w-3/6 xl:w-1/3">
+                <ul class="flex flex-col gap-y-2">
                     <li>
-                        <a href="/">Home</a>
+                        <a class="hover:text-green" href="{{ route('site.index') }}">Home</a>
                     </li>
                     <li>
-                        <a href="/blog">Blog</a>
+                        <a class="hover:text-green" href="{{ route('blog.index') }}">Blog</a>
                     </li>
                     <li>
-                        <a href="/projects">Projects</a>
+                        <a class="hover:text-green" href="{{ route('projects.index') }}">Projects</a>
                     </li>
                     <li>
-                        <a href="/contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-             <div class="">
-                <ul>
-                    <li>
-                        <a href="https://github.com/Cuji12">GitHub</a>
-                    </li>
-                    <li>
-                        <a href="https://www.peopleperhour.com/freelancer/technology-programming/cu-janeway-full-stack-web-developer-designer-zqjnqxa">PeoplePerHour</a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/in/cujaneway/">LinkedIn</a>
-                    </li>
-                    <li>
-                        <a href="https://stackoverflow.com/users/20600516/cu-janeway">Stack Overflow</a>
+                        <a class="hover:text-green" href="{{ route('contact.index') }}">Contact</a>
                     </li>
                 </ul>
             </div>
-            <div>
-                <a href="mailto:hello@cujaneway.co.uk">
+             <div class="flex-auto w-3/6 xl:w-1/3">
+                <ul class="flex flex-col gap-y-2">
+                    <li>
+                        <a class="hover:text-green" href="https://github.com/Cuji12">GitHub</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-green" href="https://www.peopleperhour.com/freelancer/technology-programming/cu-janeway-full-stack-web-developer-designer-zqjnqxa">PeoplePerHour</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-green" href="https://www.linkedin.com/in/cujaneway/">LinkedIn</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-green" href="https://stackoverflow.com/users/20600516/cu-janeway">Stack Overflow</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="flex-auto w-full xl:w-1/3">
+                <a class="text-green" href="mailto:hello@cujaneway.co.uk">
                     hello@cujaneway.co.uk
                 </a>
             </div>
-            <p class="">
-                Copyright &copy; Cu Janeway @php echo date('Y'); @endphp
+            <p class="w-full text-sm xl:text-lg text-slate-500 pb-4">
+                Copyright &copy; Cu Janeway {{ date('Y') }}
                 <a class="underline" href="/about-this-site">More about this website</a>
             </p>
         </footer>

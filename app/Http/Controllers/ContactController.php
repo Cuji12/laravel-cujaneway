@@ -4,25 +4,25 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SiteController extends Controller
+class ContactController extends Controller
 {
-    /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() 
+    public function index()
     {
-        return view('site.index');
-    } 
+        return view('contact.index');
+    }
 
     /**
-     * Display a listing of the resource.
+     * Post the contact form.
      *
      * @return \Illuminate\Http\Response
      */
-    public function aboutSite() 
+    public function post()
     {
-        return view('site.about-this-site');
+        
     }
 }

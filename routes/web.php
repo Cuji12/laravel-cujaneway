@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SiteController;
+use App\Http\Controllers\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,13 +16,14 @@ use App\Http\Controllers\ProjectController;
 |
 */
 
-Route::get('/', function () {
-    return view('site.index');
+Route::controller(SiteController::class)->group(function () {
+    Route::get('/', 'index')->name('site.index');
+    Route::get('/about-this-site', 'aboutSite')->name('site.about');
 });
 
-Route::prefix('contact')->group(function () {
-    Route::get('/', ContactController::class, 'index');
-    Route::post('/', ContactController::class, 'post');
+Route::controller(ContactController::class)->group(function () {
+    Route::get('/contact', 'index')->name('contact.index');
+    Route::post('/contact', 'post')->name('contact.post');
 });
 
 Route::resource('projects', ProjectController::class);

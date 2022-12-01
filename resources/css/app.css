@@ -16,36 +16,59 @@ footer {
     max-width: 1024px;
 }
 @layer utilities {
-    .n-left-24 {
-        left: -6rem;
-    }
-    .n-right-64 {
-        right: -16rem;
-    }
-    .n-right-52 {
-        right: -13rem;
-    }
-    .n-left-80 {
-        left: -20rem;
-    }
-    .n-left-52 {
-        left: -13rem;
-    }
-    .n-left-4 {
-        left: -1rem;
-    }
-    .n-bottom-4 {
-        bottom: -1rem;
-    }
     .w-112 {
         width: 28rem;
-    }
-    .max-w-128 {
-        max-width: 32rem;
     }
     .w-128 {
         width: 32rem;
     }
+
+    .max-w-112 {
+        max-width: 28rem;
+    }
+    .max-w-128 {
+        max-width: 32rem;
+    }
+    .max-w-160 {
+        max-width: 40rem;
+    }
+
+    .n-left-24 {
+        left: -6rem;
+    }
+    .n-right-52 {
+        right: -13rem;
+    }
+    .n-right-64 {
+        right: -16rem;
+    }
+    .n-right-88 {
+        right: -22rem;
+    }
+    .n-right-124 {
+        right: -31rem;
+    }
+
+    .n-left-4 {
+        left: -1rem;
+    }
+    .n-left-13 {
+        left: -3.25rem;
+    }
+    .n-left-52 {
+        left: -13rem;
+    }
+    .n-left-80 {
+        left: -20rem;
+    }
+    .n-left-100 {
+        left: -25rem;
+    }
+
+    .n-bottom-4 {
+        bottom: -1rem;
+    }
+
     .t-origin-tl {
         transform-origin: top left;
     }

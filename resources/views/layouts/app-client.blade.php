@@ -6,7 +6,7 @@
 
         <title>Cu Janeway - @yield('title')</title>
         <!-- Styles -->
-        @vite(['resources/css/app.css'])
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
             }
         </style>
     </head>
-    <body class="">
+    <body class="relative" x-data="{ open: false }" x-bind:class="open ? 'overflow-hidden' : ''">
         @yield('header')
 
         <div>
@@ -30,32 +30,32 @@
             <div class="xl:w-2/6">
                 <ul class="flex flex-col gap-y-2 ">
                     <li>
-                        <a class="hover:text-green" href="{{ route('site.index') }}">Home</a>
+                        <a class="hover:text-green active:text-green" href="{{ route('site.index') }}">Home</a>
                     </li>
                     <li>
-                        <a class="hover:text-green" href="{{ route('blog.index') }}">Blog</a>
+                        <a class="hover:text-green active:text-green" href="{{ route('blog.index') }}">Blog</a>
                     </li>
                     <li>
-                        <a class="hover:text-green" href="{{ route('projects.index') }}">Projects</a>
+                        <a class="hover:text-green active:text-green" href="{{ route('projects.index') }}">Projects</a>
                     </li>
                     <li>
-                        <a class="hover:text-green" href="{{ route('contact.index') }}">Contact</a>
+                        <a class="hover:text-green active:text-green" href="{{ route('contact.index') }}">Contact</a>
                     </li>
                 </ul>
             </div>
              <div class="xl:w-2/6">
                 <ul class="flex flex-col gap-y-2 ">
                     <li>
-                        <a class="hover:text-green" href="https://github.com/Cuji12">GitHub</a>
+                        <a class="hover:text-green active:text-green" href="https://github.com/Cuji12">GitHub</a>
                     </li>
                     <li>
-                        <a class="hover:text-green" href="https://www.peopleperhour.com/freelancer/technology-programming/cu-janeway-full-stack-web-developer-designer-zqjnqxa">PeoplePerHour</a>
+                        <a class="hover:text-green active:text-green" href="https://www.peopleperhour.com/freelancer/technology-programming/cu-janeway-full-stack-web-developer-designer-zqjnqxa">PeoplePerHour</a>
                     </li>
                     <li>
-                        <a class="hover:text-green" href="https://www.linkedin.com/in/cujaneway/">LinkedIn</a>
+                        <a class="hover:text-green active:text-green" href="https://www.linkedin.com/in/cujaneway/">LinkedIn</a>
                     </li>
                     <li>
-                        <a class="hover:text-green" href="https://stackoverflow.com/users/20600516/cu-janeway">Stack Overflow</a>
+                        <a class="hover:text-green active:text-green" href="https://stackoverflow.com/users/20600516/cu-janeway">Stack Overflow</a>
                     </li>
                 </ul>
             </div>

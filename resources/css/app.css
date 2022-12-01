@@ -68,8 +68,30 @@ footer {
     .n-bottom-4 {
         bottom: -1rem;
     }
+    .n-bottom-40 {
+        bottom: -10rem;
+    }
 
     .t-origin-tl {
         transform-origin: top left;
+    }
+
+    .rotate-315 {
+        transform: rotate(315deg);
+    }
+
+    .n-translate-x-50 {
+        transform: translateX(-50%);
+    }
+
+    .duration-0 {
+        transition-duration: 0ms;
+    }
+
+    .logo {
+        max-width: 136px;
+    }
+    .flex-important {
+        display: flex !important;
     }
 }

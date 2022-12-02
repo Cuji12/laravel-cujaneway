@@ -3,7 +3,7 @@
 @section('title', 'Home')
 
 @section('header')
-    <x-header headerBgColor="white"/>
+    <x-header headerBgColor="bg-white"/>
 @endsection()
 
 @section('content')
@@ -15,13 +15,13 @@
                 <img class="xl:w-80 3xl:w-92 mb-6 xl:mb-0 sm:w-72 5xl:w-112" src="/images/me.jpg" alt="Picture of me during a hike."/>
                 <p class="text-green w-full font-medium mb-2 xl:absolute top-0 xl:text-2xl xl:rotate-90 xl:t-origin-tl xl:n-right-88 tracking-wider md:text-xl 5xl:text-4xl 5xl:n-right-124">Web Developer</p>
             </div>
-            <p class="xl:max-w-128 xl:text-xl xl:ml-16 md:text-lg 5xl:text-2xl">
+            <p class="xl:max-w-128 xl:text-xl xl:ml-16 md:text-lg 5xl:text-2xl xl:mb-36">
                 Hey, I'm a Web Developer from Manchester. I build things in PHP & JavaScript using tools like Laravel, Laravel Livewire, Yii2, Docker and some other cool things.
                 <br/>
                 <br/>
                 Feel free to check out my blog to see what I've been tinkering with lately.
             </p>
-            <h2 class="xl:w-full text-xl mt-12 xl:text-3xl xl:font-medium tracking-wider xl:mt-36 md:text-2xl 5xl:text-4xl">Recent Posts</h2>
+            <h2 class="xl:w-full text-xl mt-12 xl:font-medium tracking-wider md:text-2xl 5xl:text-4xl">Recent Posts</h2>
             <ul>
                 {{-- @foreach($recentPosts as $post)
                     <li>

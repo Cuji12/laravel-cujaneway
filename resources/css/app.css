@@ -12,9 +12,6 @@
 ::-moz-selection {
     background: #FFE8DC; /* Gecko Browsers */
 }
-footer {
-    max-width: 1024px;
-}
 @layer utilities {
     .w-112 {
         width: 28rem;

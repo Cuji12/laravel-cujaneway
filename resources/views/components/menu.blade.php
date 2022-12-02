@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex xl:hidden">
     <div class="flex cursor-pointer" @click="open = ! open">
         {{ $trigger }}
     </div>

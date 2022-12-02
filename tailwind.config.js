@@ -12,7 +12,8 @@ module.exports = {
         extend: {
             colors: {
                 'pink': '#FFE8DC',
-                'green': '#07691C'
+                'green': '#07691C',
+                'sky-blue': '#EDF2F7'
             },
             screens: {
                 '3xl': '1920px',

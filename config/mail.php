@@ -47,6 +47,10 @@ return [
 
         'ses' => [
             'transport' => 'ses',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION', 'eu-west-2'),
+            'token' => env('AWS_SESSION_TOKEN'),
         ],
 
         'mailgun' => [
@@ -92,8 +96,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'hello@cujaneway.co.uk'),
+        'name' => env('MAIL_FROM_NAME', 'Cu Janeway'),
     ],
 
     /*

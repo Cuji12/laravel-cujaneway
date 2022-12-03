@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        //
+        return view('blog.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.form');
     }
 
     /**
@@ -45,7 +45,7 @@ class BlogController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('blog.show');
     }
 
     /**
@@ -56,7 +56,7 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('blog.form');
     }
 
     /**

@@ -4,7 +4,6 @@
 
 * {
     font-family: 'Roboto', sans-serif;
-    font-color: #2B2B2B;
 }
 ::selection {
     background: #FFE8DC; /* WebKit/Blink Browsers */
@@ -12,6 +11,10 @@
 ::-moz-selection {
     background: #FFE8DC; /* Gecko Browsers */
 }
+textarea {
+    resize: none;
+}
+
 @layer utilities {
     .w-112 {
         width: 28rem;

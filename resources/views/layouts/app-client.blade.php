@@ -22,9 +22,7 @@
     <body class="relative min-h-screen pb-96 lg:pb-72" x-data="{ open: false }" x-bind:class="open ? 'overflow-hidden' : ''">
         @yield('header')
 
-        <div>
-            @yield('content')
-        </div>
+        @yield('content')
 
         <footer class="absolute bottom-0 w-full">
             <div class="flex max-w-112 xl:max-w-160 p-6 mx-auto flex-wrap gap-y-6 text-xl justify-between">

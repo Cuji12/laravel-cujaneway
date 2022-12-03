@@ -2,7 +2,7 @@
     'headerBgColor'
 ])
 
-<header class="flex justify-between content-center h-20 xl:h-24 xl:px-12 px-8 5xl:justify-around {{ $headerBgColor }}">
+<header class="flex justify-between items-center h-20 xl:h-24 xl:px-12 px-8 5xl:justify-around {{ $headerBgColor }}">
     <a href="{{route('site.index') }}">
         <img class="logo" src="/images/logo.png" alt="Website Logo." class="h-full"/>
     </a>

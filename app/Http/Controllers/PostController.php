@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -13,7 +14,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('blog.index');
+        $posts = Post::all();
+
+        return view('admin.blog.index', ['posts' => $posts]);
     }
 
     /**
@@ -23,7 +26,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('blog.form');
+        return view('admin.blog.form');
     }
 
     /**
@@ -56,7 +59,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        return view('blog.form');
+        return view('admin.blog.form');
     }
 
     /**
@@ -79,6 +82,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        var_dump('test');
+        exit;
+
+        $post->delete();
+
     }
 }

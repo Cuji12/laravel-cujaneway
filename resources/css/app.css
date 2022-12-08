@@ -5,6 +5,10 @@
 * {
     font-family: 'Roboto', sans-serif;
 }
+input:focus-visible, textarea:focus-visible {
+    border: none;
+    outline: none;
+}
 ::selection {
     background: #FFE8DC; /* WebKit/Blink Browsers */
   }

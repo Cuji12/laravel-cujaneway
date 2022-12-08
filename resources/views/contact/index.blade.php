@@ -14,61 +14,73 @@
         <div class="flex flex-col w-full items-center xl:flex-row xl:justify-center gap-y-12 p-8">
             <form class="flex relative flex-col gap-y-2 w-full sm:w-9/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 3xl:w-3/12 4xl:w-3/12 xl:pr-8" method="POST" action="{{ route('contact.post') }}">
                 @csrf
-                <label class="text-lg font-medium" for="name">
+                <label class="text-lg font-medium mb-4" for="name">
                     <span class="block">
                         Name
                         <span class="text-red-600">*</span>
                     </span>
                     <input 
-                        class="mb-4 border-none font-normal bg-sky-blue target focus:ring-green rounded-sm w-full @error('name') is-invalid @enderror" 
+                        class="font-normal border-0 bg-sky-blue target focus:ring-green rounded-sm w-full @error('name') ring-red-600 ring-2 @enderror" 
                         type="text" 
                         name="name" 
                         required 
                         autocapitalize=words 
                         value="{{ old('name') }}">
+                        @error('name')
+                            <span class="text-red-600">{{ $message }}</span>
+                        @enderror
                 </label>
 
-                <label class="text-lg font-medium" for="email">
+                <label class="text-lg font-medium mb-4" for="email">
                     <span class="block">
                         Email
                         <span class="text-red-600">*</span>
                     </span>
                     <input 
-                        class="mb-4 border-none font-normal bg-sky-blue focus:ring-green rounded-sm w-full invalid:border-red-500 @error('email') is-invalid @enderror" 
+                        class="font-normal border-0 bg-sky-blue focus:ring-green rounded-sm w-full @error('email') ring-red-600 ring-2 @enderror" 
                         type="email" 
                         name="email" 
                         required
                         value="{{ old('email') }}">
+                        @error('email')
+                            <span class="text-red-600 text-sm">{{ $message }}</span>
+                        @enderror
                 </label>
 
-                <label class="text-lg font-medium" for="email">
+                <label class="text-lg font-medium mb-4" for="email">
                     Phone
                     <input 
-                        class="mb-4 border-none font-normal bg-sky-blue focus:ring-green rounded-sm w-full invalid:border-red-500 @error('phone') is-invalid @enderror" 
+                        class="font-normal border-0 bg-sky-blue focus:ring-green rounded-sm w-full @error('phone') ring-red-600 ring-2 @enderror" 
                         type="tel" 
                         name="phone"
                         value="{{ old('phone') }}">
+                        @error('phone')
+                            <span class="text-red-600 text-sm">{{ $message }}</span>
+                        @enderror
                 </label>
 
-                <label class="text-lg font-medium" for="message">
+                <label class="text-lg font-medium mb-4" for="message">
                     <span class="block">
                         Message
                         <span class="text-red-600">*</span>
                     </span>
                     <textarea 
-                        class="mb-4 border-none font-normal bg-sky-blue focus:ring-green rounded-sm w-full invalid:border-red-500 @error('message') is-invalid @enderror" 
+                        class="font-normal border-0 bg-sky-blue focus:ring-green rounded-sm w-full @error('message') ring-red-600 ring-2 @enderror" 
                         name="message" 
                         rows="4"
                         required 
                         autocapitalize=sentence 
-                        resize=none
-                        value="{{ old('message') }}">
+                        resize=none>
+                        {{ old('message') }}
                     </textarea>
+                    @error('message')
+                        <span class="text-red-600">{{ $message }}</span>
+                    @enderror
                 </label>
                 <div class="flex items-center text-center h-12">
                     @if (!session('success'))
                         <input
-                            class="bg-charcoal text-white w-28 px-5 py-3 rounded-sm font-medium cursor-pointer hover:bg-green" 
+                            class="bg-charcoal text-white w-28 px-5 py-3 mt-4 rounded-sm font-medium cursor-pointer hover:bg-green" 
                             type="submit" 
                             value="Send"
                         >

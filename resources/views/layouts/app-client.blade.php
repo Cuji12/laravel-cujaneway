@@ -19,7 +19,7 @@
             }
         </style>
     </head>
-    <body class="relative min-h-screen pb-96 lg:pb-72" x-data="{ open: false }" x-bind:class="open ? 'overflow-hidden' : ''">
+    <body class="relative min-h-screen pb-96 lg:pb-72 antialiased" x-data="{ open: false }" x-bind:class="open ? 'overflow-hidden' : ''">
         @yield('header')
 
         @yield('content')

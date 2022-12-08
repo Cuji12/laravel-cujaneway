@@ -41,7 +41,7 @@ class ContactController extends Controller
                 $validated['message'])
             );
 
-            // Check if email is not null, otherwise we can assume it's an instance of Illuminate\Mail\SentMessage
+        // Check if email is not null, otherwise we can assume it's an instance of Illuminate\Mail\SentMessage
         if (isset($email)) {
             return redirect()->route('contact.index')->with('success', true);
         }

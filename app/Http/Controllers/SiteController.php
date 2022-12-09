@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SiteController extends Controller
 {
@@ -13,7 +14,9 @@ class SiteController extends Controller
      */
     public function index() 
     {
-        return view('site.index');
+        $recentPosts = DB::table('posts')->limit(5)->get();
+
+        return view('site.index', ['recentPosts' => $recentPosts]);
     } 
 
     /**

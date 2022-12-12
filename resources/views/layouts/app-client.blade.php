@@ -63,7 +63,7 @@
                         hello@cujaneway.co.uk
                     </a>
                 </div>
-                <p class="w-full text-sm xl:text-md text-slate-500 ">
+                <p class="w-full text-sm xl:text-md text-slate-500">
                     Copyright &copy; Cu Janeway {{ date('Y') }}
                     <a class="underline" href="/about-this-site">More about this website</a>
                 </p>

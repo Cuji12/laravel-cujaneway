@@ -26,7 +26,7 @@
                 @foreach($recentPosts as $post)
                     <li>
                         <span class="text-green hidden mr-4 lg:inline font-medium">{{ date('Y-m-d', strtotime($post->created_at)) }}</span>
-                        <a class="hover:text-green" href="{{ $post->url }}">
+                        <a class="hover:text-green" href="{{ route('blog.show', ['blog' => $post->geturiTitleParam()]) }}">
                             {{ $post->title }}
                         </a>
                     </li>

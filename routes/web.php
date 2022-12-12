@@ -38,7 +38,11 @@ Route::controller(ContactController::class)->group(function () {
     Route::post('/contact', 'post')->name('contact.post');
 });
 
+Route::controller(PostController::class)->group(function () {
+    Route::get('/blog', 'index')->name('blog.index');
+    Route::get('/blog/{blog}', 'show')->name('blog.show');
+});
+
 Route::resource('projects', ProjectController::class);
-Route::resource('blog', PostController::class);
 
 require __DIR__.'/auth.php';

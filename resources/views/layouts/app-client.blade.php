@@ -5,8 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>Cu Janeway - @yield('title')</title>
+        @if(isset($blogPostCss))
         <!-- Styles -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+            @vite(['resources/css/app.css', 'resources/css/blogPost.css', 'resources/js/app.js'])
+        @else
+            @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @endif
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">

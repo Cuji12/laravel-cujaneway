@@ -22,14 +22,12 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $uri_title
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uri_title)
     {
-        $post = Post::find($id);
-        var_dump($post);
-        exit;
+        $post = Post::where('uri_title', $uri_title)->first();
 
         return view('blog.show', ['post' => $post]);
     }

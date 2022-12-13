@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Post;
+use Illuminate\Support\Str;
 
 class PostObserver
 {
@@ -12,20 +13,9 @@ class PostObserver
      * @param  \App\Models\Post  $post
      * @return void
      */
-    public function created(Post $post)
+    public function saving(Post $post)
     {
-        $post->uri_title = $post->title;
-    }
-
-    /**
-     * Handle the Post "updated" event.
-     *
-     * @param  \App\Models\Post  $post
-     * @return void
-     */
-    public function updated(Post $post)
-    {
-        $post->title = $post->title;
+        $post->uri_title = Str::slug($post->title);
     }
 
     /**

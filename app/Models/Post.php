@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Post extends Model
 {
@@ -30,20 +31,9 @@ class Post extends Model
         'title',
         'content',
         'image_url',
+        'tags',
         'uri_title'
     ];
-
-    /**
-     * Interact with the post's uri_title.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
-     */
-    protected function uriTitle(): Attribute
-    {
-        return Attribute::make(
-            set: fn ($value) => strtolower(str_replace(' ', '-', $value)),
-        );
-    }
 
     public function setImageAttribute($value)
     {
@@ -54,8 +44,13 @@ class Post extends Model
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path, $fileName = null);
     }
 
-    public function getTags() 
+    public function getTagsAsArray() 
     {
-        return explode(',', $this->tags);
+        return explode(',', trim($this->tags));
+    }
+
+    public function relatedPosts()
+    {
+        return Post::where('id', '!=', $this->id)->take(2)->get();
     }
 }

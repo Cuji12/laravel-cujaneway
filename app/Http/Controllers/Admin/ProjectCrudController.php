@@ -44,12 +44,6 @@ class ProjectCrudController extends CrudController
         CRUD::column('description');
         CRUD::column('created_at');
         CRUD::column('updated_at');
-
-        /**
-         * Columns can be defined using the fluent syntax or array syntax:
-         * - CRUD::column('price')->type('number');
-         * - CRUD::addColumn(['name' => 'price', 'type' => 'number']); 
-         */
     }
 
     /**
@@ -61,14 +55,9 @@ class ProjectCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field('url');
+        CRUD::field('url')->type('url');
         CRUD::field('description');
-
-        /**
-         * Fields can be defined using the fluent syntax or array syntax:
-         * - CRUD::field('price')->type('number');
-         * - CRUD::addField(['name' => 'price', 'type' => 'number'])); 
-         */
+        CRUD::field('images')->type('0')->upload('true');
     }
 
     /**

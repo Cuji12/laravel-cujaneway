@@ -1,4 +1,4 @@
-@extends('layouts.app-client', ['blogPostCss' => true])
+@extends('layouts.app', ['blogPostCss' => true])
 
 @section('title', 'Blog')
 

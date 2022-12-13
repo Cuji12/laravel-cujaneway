@@ -9,7 +9,7 @@
 @section('content')
 
     <section class="flex flex-row-reverse">
-        <div class="bg-pink flex flex-wrap xl:p-20 p-6 pb-96 xl:w-10/12 2xl:w-9/12 3xl:w-4/6 xl:py-44 relative xl:items-end w-11/12 py-24 lg:w-9/12">
+        <div class="bg-pink flex flex-wrap xl:p-20 p-6 pb-96 xl:w-10/12 2xl:w-9/12 3xl:w-4/6 xl:py-44 relative xl:items-end w-11/12 py-24 lg:w-9/12 rounded-md">
             <h1 class="font-bold xl:text-6xl absolute xl:top-20 xl:n-left-24 tracking-widest top-10 n-left-4 text-3xl md:text-4xl md:n-left-13">Cu Janeway</h1>
             <div class="flex flex-wrap xl:flex-nowrap relative">
                 <img class="xl:w-80 3xl:w-92 mb-6 xl:mb-0 sm:w-72 5xl:w-112" src="/images/me.jpg" alt="Picture of me during a hike."/>

@@ -82,11 +82,35 @@ textarea {
         bottom: -10rem;
     }
 
+    .n-scale-1 {
+        transform: scaleX(-1);
+    }
+
+    .top-30px {
+        top: 30px;
+    }
+    .top-40-tenth {
+        top: 10.1rem;
+    }
+    .top-44-half {
+        top: 11.5rem;
+    }
+
     .right-93px {
         right: 93px;
     }
     .right-125px {
         right: 125px;
+    }
+    .right-188px {
+        right: 188px;
+    }
+
+    .left-126px {
+        left: 126px;
+    }
+    .left-178px {
+        left: 178px;
     }
 
     .top-12-fifth {
@@ -96,6 +120,9 @@ textarea {
         top: 8.8rem;
     }
 
+    .mt-40-two-fifth {
+        margin-top: 10.4rem;
+    }
     .mt-76 {
         margin-top: 19rem;
     }

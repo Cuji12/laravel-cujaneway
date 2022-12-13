@@ -40,9 +40,9 @@ class PostCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('title');
-        CRUD::column('imageUrl');
+        CRUD::column('image_url');
         CRUD::column('content');
-        CRUD::column('url');
+        CRUD::column('tags');
         CRUD::column('created_at');
         CRUD::column('updated_at');
 
@@ -62,9 +62,9 @@ class PostCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('title');
-        CRUD::field('imageUrl');
-        CRUD::field('content');
-        CRUD::field('url');
+        CRUD::field('image_url')->type('upload');
+        CRUD::field('content')->type('summernote');
+        CRUD::field('tags');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 class SiteController extends Controller
 {
@@ -13,7 +14,9 @@ class SiteController extends Controller
      */
     public function index() 
     {
-        return view('site.index');
+        $recentPosts = Post::all()->take(5);
+
+        return view('site.index', ['recentPosts' => $recentPosts]);
     } 
 
     /**

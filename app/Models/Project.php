@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Arr;
 
 class Project extends Model
 {
@@ -32,7 +34,10 @@ class Project extends Model
     protected $fillable = [
         'name',
         'url',
+        'uri_name',
         'description',
+        'brief_description',
+        'tags',
         'images'
     ];
 
@@ -40,9 +45,14 @@ class Project extends Model
     {
         $attribute_name = "images";
         $disk = "public";
-        $destination_path = "projects";
+        $destination_path = "";
 
         $this->uploadMultipleFilesToDisk($value, $attribute_name, $disk, $destination_path);
+    }
+
+    public function getTagsAsArray(): Array
+    {
+        return explode(',', trim($this->tags));
     }
 
     /**
@@ -99,5 +109,20 @@ class Project extends Model
         }
 
         $this->attributes[$attribute_name] = json_encode($attribute_value);
+    }
+
+    public function getCoverImage() 
+    {
+        return Storage::url($this->images[0]);
+    }
+
+    public function getProjectImages() 
+    {
+        $images = [];
+        foreach ($this->images as $image) {
+            $images[] = Storage::url($image);
+        }
+
+        return $images;
     }
 }

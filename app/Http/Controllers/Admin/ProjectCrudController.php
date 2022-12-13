@@ -41,7 +41,9 @@ class ProjectCrudController extends CrudController
     {
         CRUD::column('name');
         CRUD::column('url');
+        CRUD::column('brief_description');
         CRUD::column('description');
+        CRUD::column('tags');
         CRUD::column('created_at');
         CRUD::column('updated_at');
     }
@@ -55,9 +57,11 @@ class ProjectCrudController extends CrudController
     protected function setupCreateOperation()
     {
         CRUD::field('name');
-        CRUD::field('url')->type('url');
+        CRUD::field('brief_description');
+        CRUD::field('tags')->help('Comma delimited string.');
         CRUD::field('description');
-        CRUD::field('images')->type('0')->upload('true');
+        CRUD::field('images')->type('upload_multiple')->upload('true');
+        CRUD::field('url')->type('url');
     }
 
     /**

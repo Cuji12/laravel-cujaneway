@@ -1,4 +1,4 @@
-@extends('layouts.app-client', ['blogPostCss' => true])
+@extends('layouts.app', ['blogPostCss' => true])
 
 @section('title', 'Blog')
 
@@ -15,7 +15,7 @@
         </div>
         <div class="flex flex-col w-full sm:w-9/12 lg:w-6/12 xl:w-9/12 2xl:w-8/12 3xl:w-6/12 4xl:w-5/12">
             <h5 class="text-md font-medium mb-2">More Posts</h5>
-            @foreach($post->relatedPosts() as $relatedPost)
+            @foreach($post->getRelatedPosts() as $relatedPost)
                 <p class="mb-4">
                     <a class="text-xl mb-2 pb-0 hover:text-green border-b-2 border-pink" href="{{ route('blog.show', ['blog' => $relatedPost->uri_title]) }}">
                         {{ $relatedPost->title }}

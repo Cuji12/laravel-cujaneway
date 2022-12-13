@@ -15,6 +15,6 @@
                 </div>
             @endforeach
         </div>
-        <div class="bg-green mx-auto opacity-50 mt-4 group-last:hidden" style="height: 2px; width: 95%;"></div>
+        <div class="bg-green mx-auto opacity-50 mt-4 group-last:hidden" style="height: 1px; width: 95%;"></div>
     </div>
 </a>

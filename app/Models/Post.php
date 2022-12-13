@@ -44,12 +44,12 @@ class Post extends Model
         $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path, $fileName = null);
     }
 
-    public function getTagsAsArray() 
+    public function getTagsAsArray(): Array
     {
         return explode(',', trim($this->tags));
     }
 
-    public function relatedPosts()
+    public function getRelatedPosts()
     {
         return Post::where('id', '!=', $this->id)->take(2)->get();
     }

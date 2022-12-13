@@ -1,4 +1,4 @@
-@extends('layouts.app-client')
+@extends('layouts.app')
 
 @section('title', 'Home')
 
@@ -25,7 +25,7 @@
             <ul class="flex flex-col gap-y-3 w-full list-disc marker:text-green list-inside lg:list-none lg:text-lg 5xl:text-2xl">
                 @foreach($recentPosts as $post)
                     <li>
-                        <span class="text-green hidden mr-4 lg:inline font-medium">{{ date('Y-m-d', strtotime($post->created_at)) }}</span>
+                        <span class="text-green hidden mr-4 lg:inline font-medium">{{ date('F j, Y', strtotime($post->created_at)) }}</span>
                         <a class="hover:text-green" href="{{ route('blog.show', ['blog' => $post->uri_title]) }}">
                             {{ $post->title }}
                         </a>

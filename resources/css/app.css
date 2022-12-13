@@ -37,9 +37,6 @@ textarea {
         max-width: 40rem;
     }
 
-    .n-left-24 {
-        left: -6rem;
-    }
     .n-right-52 {
         right: -13rem;
     }
@@ -56,8 +53,14 @@ textarea {
     .n-left-4 {
         left: -1rem;
     }
+    .n-left-8 {
+        left: -2rem;
+    }
     .n-left-13 {
         left: -3.25rem;
+    }
+    .n-left-24 {
+        left: -6rem;
     }
     .n-left-28 {
         left: -7rem;
@@ -77,6 +80,24 @@ textarea {
     }
     .n-bottom-40 {
         bottom: -10rem;
+    }
+
+    .right-93px {
+        right: 93px;
+    }
+    .right-125px {
+        right: 125px;
+    }
+
+    .top-12-fifth {
+        top: 3.2rem;
+    }
+    .top-36-four-fifths {
+        top: 8.8rem;
+    }
+
+    .mt-76 {
+        margin-top: 19rem;
     }
 
     .t-origin-tl {

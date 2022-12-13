@@ -43,6 +43,9 @@ Route::controller(PostController::class)->group(function () {
     Route::get('/blog/{blog}', 'show')->name('blog.show');
 });
 
-Route::resource('projects', ProjectController::class);
+Route::controller(ProjectController::class)->group(function () {
+    Route::get('/projects', 'index')->name('projects.index');
+    Route::get('/projects/{project}', 'show')->name('projects.show');
+});
 
 require __DIR__.'/auth.php';

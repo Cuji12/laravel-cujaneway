@@ -7,7 +7,9 @@ use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
 use App\Observers\PostObserver;
+use App\Observers\ProjectObserver;
 use App\Models\Post;
+use App\Models\Project;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -29,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $observers = [
         Post::class => [PostObserver::class],
+        Project::class => [ProjectObserver::class],
     ];
 
     /**

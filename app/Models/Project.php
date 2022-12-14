@@ -6,6 +6,7 @@ use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Collection;
 
 class Project extends Model
 {
@@ -124,5 +125,12 @@ class Project extends Model
         }
 
         return $images;
+    }
+
+    public function getRelatedProjects(): Collection
+    {
+        $projects = Project::where('id', '!=', $this->id)->get();
+
+        return $projects->random(2);
     }
 }

@@ -7,10 +7,10 @@
 @endsection()
 
 @section('content')
-    <x-page-title title="Get in touch"/>
+    <x-page-title title="Get in touch" lgWidth="lg:w-6/12"/>
     <main>
         <div class="flex flex-col w-full items-center xl:flex-row xl:justify-center gap-y-12 p-8">
-            <form class="flex relative flex-col gap-y-2 w-full sm:w-9/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 3xl:w-3/12 4xl:w-3/12 xl:pr-8" method="POST" action="{{ route('contact.post') }}">
+            <form class="flex relative flex-col gap-y-2 w-full sm:w-9/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 3xl:w-3/12 4xl:w-3/12 5xl:w-2/12 xl:pr-8" method="POST" action="{{ route('contact.post') }}">
                 @csrf
                 <label class="text-lg font-medium mb-4" for="name">
                     <span class="block">

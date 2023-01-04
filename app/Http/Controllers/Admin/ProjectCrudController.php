@@ -60,6 +60,7 @@ class ProjectCrudController extends CrudController
         CRUD::field('brief_description');
         CRUD::field('tags')->help('Comma delimited string.');
         CRUD::field('description');
+        CRUD::field('thumb_image')->type('upload')->upload('true');
         CRUD::field('images')->type('upload_multiple')->upload('true');
         CRUD::field('url')->type('url');
     }

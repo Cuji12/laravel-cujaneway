@@ -20,6 +20,9 @@
             <li class="mx-2">
                 <a class="hover:text-green active:text-green" href="{{ route('contact.index') }}">Contact</a>
             </li>
+            <li class="mx-2">
+                <a class="hover:text-green active:text-green" href="{{ route('site.cv') }}">CV</a>
+            </li>
             <li class="ml-5 text-green">
                 <a href="mailto:hello@cujaneway.co.uk">
                     hello@cujaneway.co.uk

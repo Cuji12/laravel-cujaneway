@@ -28,4 +28,14 @@ class SiteController extends Controller
     {
         return view('site.about-this-site');
     }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cv() 
+    {
+        return view('site.cv');
+    }
 }

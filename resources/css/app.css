@@ -10,6 +10,9 @@ textarea:focus-visible {
     border: none;
     outline: none;
 }
+main * ::selection {
+    background: #07691C; /* WebKit/Blink Browsers */
+}
 ::selection {
     background: #ffe8dc; /* WebKit/Blink Browsers */
 }

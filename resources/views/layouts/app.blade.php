@@ -26,13 +26,13 @@
             }
         </style>
     </head>
-    <body class="relative min-h-screen pb-96 lg:pb-72 antialiased" x-data="{ open: false }" x-bind:class="open ? 'overflow-hidden' : ''">
+    <body class="relative min-h-screen antialiased pb-96 lg:pb-72" x-data="{ open: false }" x-bind:class="open ? 'overflow-hidden' : ''">
         @yield('header')
 
         @yield('content')
 
         <footer class="absolute bottom-0 w-full">
-            <div class="flex max-w-112 xl:max-w-160 p-6 mx-auto flex-wrap gap-y-6 text-xl justify-between">
+            <div class="flex flex-wrap justify-between p-6 mx-auto text-xl max-w-112 xl:max-w-160 gap-y-6">
                 <div class="xl:w-2/6">
                     <ul class="flex flex-col gap-y-2 ">
                         <li>

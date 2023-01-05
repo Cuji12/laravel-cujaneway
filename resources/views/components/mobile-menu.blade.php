@@ -1,11 +1,11 @@
 
-<div class="hidden justify-center items-center top-0 left-0 bg-pink w-full h-full relative" x-data="{ hidePopOut: true }" x-bind:class="hidePopOut ? 'flex-important' : ''">
-    <div class="absolute top-5 right-8 text-5xl text-green cursor-pointer w-10 h-10" @click="open = false">
-        <hr class="border-green border-2 rounded-xl rotate-45 absolute top-4 left-0 w-10 origin-center" />
-        <hr class="border-green border-2 rounded-xl rotate-315 absolute top-4 left-0 w-10 origin-center" />
+<div class="relative top-0 left-0 items-center justify-center hidden w-full h-full bg-pink" x-data="{ hidePopOut: true }" x-bind:class="hidePopOut ? 'flex-important' : ''">
+    <div class="absolute w-10 h-10 text-5xl cursor-pointer top-5 right-8 text-green" @click="open = false">
+        <hr class="absolute left-0 w-10 origin-center rotate-45 border-2 border-green rounded-xl top-4" />
+        <hr class="absolute left-0 w-10 origin-center border-2 border-green rounded-xl rotate-315 top-4" />
     </div>
     <nav>
-        <ul class="flex gap-y-10 flex-col font-bold text-4xl text-center">
+        <ul class="flex flex-col text-4xl font-bold text-center gap-y-10">
             <li>
                 <a class="hover:text-green active:text-green" href="{{ route('site.index') }}">Home</a>
             </li>

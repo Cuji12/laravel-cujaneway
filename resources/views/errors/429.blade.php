@@ -8,7 +8,7 @@
 
 @section('content')
 
-<section class="bg-pink h-full flex content-center justify-center px-8 h-screen-80">
+<section class="flex content-center justify-center h-full px-8 bg-pink h-screen-80">
     <img class="w-full lg:w-9/12 xl:w-6/12 3xl:w-5/12" src="/images/doodles/404.svg" />
 </section>
 

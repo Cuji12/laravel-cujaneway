@@ -3,26 +3,30 @@
 @tailwind utilities;
 
 * {
-    font-family: 'Roboto', sans-serif;
+    font-family: "Roboto", sans-serif;
 }
-input:focus-visible, textarea:focus-visible {
+input:focus-visible,
+textarea:focus-visible {
     border: none;
     outline: none;
 }
+main * ::selection {
+    background: #07691C; /* WebKit/Blink Browsers */
+}
 ::selection {
-    background: #FFE8DC; /* WebKit/Blink Browsers */
+    background: #ffe8dc; /* WebKit/Blink Browsers */
 }
 ::-moz-selection {
-    background: #FFE8DC; /* Gecko Browsers */
+    background: #ffe8dc; /* Gecko Browsers */
 }
 textarea {
     resize: none;
 }
 .green-highlight::selection {
-    background: #07691C;
+    background: #07691c;
 }
 .green-highlight::-moz-selection {
-    background: #07691C;
+    background: #07691c;
 }
 
 @layer utilities {
@@ -151,7 +155,6 @@ textarea {
     .h-screen-80 {
         height: 93vh;
     }
-
 
     .logo {
         max-width: 140px;

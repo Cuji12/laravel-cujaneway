@@ -3,7 +3,7 @@
         {{ $trigger }}
     </div>
 
-    <div class="absolute w-screen h-screen top-0 left-0 z-50" 
+    <div class="absolute top-0 left-0 z-50 w-screen h-screen" 
         x-show="open"
         x-transition:enter="transition ease-out duration-200"
         x-transition:enter-start="transform opacity-0 scale-95"

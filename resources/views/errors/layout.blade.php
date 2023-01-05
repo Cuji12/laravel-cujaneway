@@ -38,7 +38,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col-md-12 text-center">
+  <div class="text-center col-md-12">
     <div class="error_number">
       <small>ERROR</small><br>
       {{ $error_number }}

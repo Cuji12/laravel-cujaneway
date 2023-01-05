@@ -32,6 +32,7 @@ Route::controller(SiteController::class)->group(function () {
     Route::get('/', 'index')->name('site.index');
     Route::get('/about-this-site', 'aboutSite')->name('site.about');
     Route::get('/cv', 'cv')->name('site.cv');
+    Route::get('/download-cv-pdf', 'downloadCvPDF')->name('site.downloadCvPDF');
 });
 
 Route::controller(ContactController::class)->group(function () {

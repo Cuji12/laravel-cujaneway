@@ -24,7 +24,7 @@ class Project extends Model
      */
     public function getRouteKeyName()
     {
-        return 'name';
+        return 'uri_name';
     }
 
     /**

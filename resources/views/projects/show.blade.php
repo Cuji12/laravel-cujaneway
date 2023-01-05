@@ -30,14 +30,6 @@
                     <img class="rounded-md w-full md:w-9/12 xl:w-5/12" src="{{ $image }}" class="" />
                 @endforeach
             </div>
-            <div class="relative pt-24">
-                <h2 class="font-bold xl:text-6xl absolute xl:top-20 xl:n-left-24 tracking-widest top-10 n-left-12 text-3xl md:text-4xl md:n-left-13">Other Work</h2>
-                <div class="flex flex-col content-center w-full gap-y-4 items-center justify-center xl:flex-row xl:pt-20 xl:gap-x-4">
-                    @foreach($project->getRelatedProjects() as $relatedProject)
-                        <x-project :project="$relatedProject" />
-                    @endforeach
-                </div>
-            </div>
         </div>
     </main>
 @endsection

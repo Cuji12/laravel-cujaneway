@@ -22,10 +22,10 @@
             <h3 class="font-bold text-lg mb-1 sm:w-9/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 4xl:w-3/12 4xl:text-xl">More details:</h3>
             <ul class="marker:text-green list-inside list-disc sm:w-9/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 4xl:w-3/12 4xl:text-lg">
                 <li>Designed in AdobeXD</li>
-                <li>Code on <a class="link" href="https://github.com/Cuji12/laravel-cujaneway">Github</a>
+                <li>Code on <a class="underline hover:text-green" href="https://github.com/Cuji12/laravel-cujaneway">Github</a>
                 </li>
                 <li>Built with Laravel</li>
-                <li>Deployed with <a href="https://fly.io/">Fly.io</a> using Firecracker microVMs</li>
+                <li>Deployed with <a class="underline hover:text-green" href="https://fly.io/">Fly.io</a> using Firecracker microVMs</li>
                 <li>Styled with Tailwind</li>
             </ul>
         </div>

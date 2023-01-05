@@ -37,9 +37,9 @@ class ProjectController extends Controller
      * @param  string  $name
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($uri_name)
     {
-        $project = Project::where('name', $name)->first();
+        $project = Project::where('uri_name', $uri_name)->first();
 
         return view('projects.show', ['project' => $project]);
     }

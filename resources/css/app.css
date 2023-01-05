@@ -11,12 +11,18 @@ input:focus-visible, textarea:focus-visible {
 }
 ::selection {
     background: #FFE8DC; /* WebKit/Blink Browsers */
-  }
+}
 ::-moz-selection {
     background: #FFE8DC; /* Gecko Browsers */
 }
 textarea {
     resize: none;
+}
+.green-highlight::selection {
+    background: #07691C;
+}
+.green-highlight::-moz-selection {
+    background: #07691C;
 }
 
 @layer utilities {
@@ -55,6 +61,9 @@ textarea {
     }
     .n-left-8 {
         left: -2rem;
+    }
+    .n-left-12 {
+        left: -3rem;
     }
     .n-left-13 {
         left: -3.25rem;

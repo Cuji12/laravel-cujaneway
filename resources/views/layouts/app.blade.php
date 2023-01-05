@@ -6,16 +6,19 @@
 
         <title>Cu Janeway - @yield('title')</title>
         @if(isset($blogPostCss))
-        <!-- Styles -->
+        <!-- Styles / Scripts -->
             @vite(['resources/css/app.css', 'resources/css/blogPost.css', 'resources/js/app.js'])
         @else
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
+        
+        <script src="https://www.google.com/recaptcha/api.js"></script>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"> 
+        <link rel="shortcut icon" href="/favicon.png">
 
         <style>
             body {

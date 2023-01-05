@@ -78,7 +78,7 @@
                 <div class="flex items-center text-center h-12">
                     @if (!session('success'))
                         <input
-                            class="bg-charcoal text-white w-28 px-5 py-3 mt-4 rounded-sm font-medium cursor-pointer hover:bg-green" 
+                            class="bg-green text-white w-28 px-5 py-3 mt-4 rounded-sm font-medium cursor-pointer hover:bg-darker-green" 
                             type="submit" 
                             value="Send"
                             data-sitekey="reCAPTCHA_site_key" 

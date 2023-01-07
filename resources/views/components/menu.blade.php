@@ -1,5 +1,5 @@
 <div class="flex xl:hidden">
-    <div class="flex cursor-pointer" @click="open = ! open">
+    <div class="flex cursor-pointer" @click="open = ! open; window.scrollTo({top: 0})">
         {{ $trigger }}
     </div>
 

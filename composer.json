@@ -9,15 +9,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "aws/aws-sdk-php": "^3.255",
         "backpack/crud": "^5.4",
         "doctrine/dbal": "^3.5",
+        "fakerphp/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
-        "propaganistas/laravel-phone": "^4.4",
-        "fakerphp/faker": "^1.9.1"
-
+        "propaganistas/laravel-phone": "^4.4"
     },
     "require-dev": {
         "backpack/generators": "^3.3",

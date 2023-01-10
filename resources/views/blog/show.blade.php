@@ -1,6 +1,6 @@
 @extends('layouts.app', ['blogPostCss' => true])
 
-@section('title', 'Blog')
+@section('title', {{ $post->title }})
 
 @section('header')
     <x-header headerBgColor="bg-pink"/>

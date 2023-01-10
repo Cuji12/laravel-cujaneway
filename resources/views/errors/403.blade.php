@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Home')
+@section('title', 'Error - 403')
 
 @section('header')
     <x-header headerBgColor="bg-white"/>

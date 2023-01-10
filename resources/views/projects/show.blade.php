@@ -4,9 +4,7 @@
 
 @extends('layouts.app')
 
-@section('title')
-    {{ $project->name }}
-@endsection
+@section('title') {{ $project->name }}@endsection
 
 @section('header')
     <x-header headerBgColor="bg-white"/>

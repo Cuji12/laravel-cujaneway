@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Contact')
+@section('description', 'Get in touch!')
 
 @section('header')
     <x-header headerBgColor="bg-pink"/>

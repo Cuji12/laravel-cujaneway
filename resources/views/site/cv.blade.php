@@ -11,7 +11,7 @@
         <div class="max-w-screen-md mx-auto text-center sm:w-11/12">
             <a href="{{ route('site.downloadCvPDF') }}" class="inline-block px-5 py-2 mt-4 font-medium text-white rounded-sm cursor-pointer bg-green w-44 hover:bg-darker-green">Download PDF</a>
         </div>
-        <div class="flex flex-col max-w-screen-md p-8 mx-auto bg-pink gap-y-4 sm:w-11/12 sm:mt-4 sm:rounded-md">
+        <div class="flex flex-col max-w-screen-md p-8 mx-auto mt-4 bg-pink gap-y-4 sm:w-11/12 sm:rounded-md">
             <div>
                 <h1 class="text-4xl font-bold text-green md:text-5xl">Cu Janeway</h1>
                 <p class="flex flex-col sm:flex-row sm:items-center">

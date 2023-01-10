@@ -9,7 +9,7 @@
 @section('content')
     <section class="flex flex-wrap ">
         <div class="w-full bg-pink sm:flex sm:justify-center">
-            <h1 class="p-8 pt-20 pb-6 text-2xl font-bold tracking-wider sm:w-9/12 sm:px-0 lg:w-6/12 xl:w-5/12 2xl:w-4/12 4xl:w-3/12 4xl:text-3xl">About This Site</h1>
+            <h1 class="p-8 pt-20 pb-6 text-4xl font-bold tracking-wider md:text-5xl sm:w-9/12 sm:px-0 lg:w-6/12 xl:w-5/12 2xl:w-4/12 4xl:w-3/12">About This Site</h1>
         </div>
         <div class="content-center p-8 sm:flex sm:flex-wrap sm:px-0 sm:flex-col">
             <h2 class="mb-1 text-lg font-bold sm:w-9/12 lg:w-6/12 xl:w-5/12 2xl:w-4/12 4xl:w-3/12 4xl:text-xl">Codebase and CMS</h2>

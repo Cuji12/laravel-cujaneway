@@ -14,7 +14,7 @@ class TrustHosts extends Middleware
     public function hosts()
     {
         return [
-            'laravel-cujaneway',
+            'cujaneway.co.uk',
             $this->allSubdomainsOfApplicationUrl(),
         ];
     }

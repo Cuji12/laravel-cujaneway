@@ -13,8 +13,6 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
         
-        <script src="https://www.google.com/recaptcha/api.js"></script>
-
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

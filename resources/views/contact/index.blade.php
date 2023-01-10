@@ -82,9 +82,6 @@
                             class="px-5 py-3 mt-4 font-medium text-white rounded-sm cursor-pointer bg-green w-28 hover:bg-darker-green" 
                             type="submit" 
                             value="Send"
-                            data-sitekey="reCAPTCHA_site_key" 
-                            data-callback='onSubmit' 
-                            data-action='submit'
                         >
                     @else
                         <div class="w-full" x-data="{ animate: false }" x-init="$nextTick(() => { animate = true })">

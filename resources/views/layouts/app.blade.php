@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Cu Janeway - @yield('title')</title>
+        <title>@yield('title')</title>
+        <meta name="description" content="@yield('description')">
         @if(isset($blogPostCss))
         <!-- Styles / Scripts -->
             @vite(['resources/css/app.css', 'resources/css/blogPost.css', 'resources/js/app.js'])
@@ -12,8 +13,6 @@
             @vite(['resources/css/app.css', 'resources/js/app.js'])
         @endif
         
-        <script src="https://www.google.com/recaptcha/api.js"></script>
-
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

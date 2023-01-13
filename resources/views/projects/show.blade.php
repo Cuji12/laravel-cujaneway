@@ -4,7 +4,7 @@
 
 @extends('layouts.app')
 
-@section('title')
+@section('title') 
     {{ $project->name }}
 @endsection
 
@@ -26,11 +26,15 @@
             </div>
             <p class="xl:w-9/12 lg:text-lg xl:text-xl xl:pt-4 3xl:w-7/12" :class="h1Height > 50 ? 'pt-8' : 'pt-0'">{{ $project->description }}</p>
             @if (isset($project->url))
-                <a target="_blank" class="px-5 py-2 mt-4 mb-10 font-medium text-white rounded-sm cursor-pointer bg-green w-28 hover:bg-darker-green" href="{{ $project->url }}">Visit Site</a>
+                <a target="_blank" class="px-5 py-2 mt-4 mb-4 font-medium text-white rounded-sm cursor-pointer bg-green w-28 hover:bg-darker-green" href="{{ $project->url }}">Visit Site</a>
             @endif
-            <div class="flex flex-col flex-wrap content-center justify-center w-full gap-y-4 xl:flex-row xl:gap-x-4 ">
+            <div class="flex flex-col flex-wrap content-center justify-center w-full mt-6 gap-y-4 xl:flex-row xl:gap-x-4">
                 @foreach($project->getProjectImages() as $image)
-                    <img class="w-full rounded-md md:w-9/12 xl:w-5/12" src="{{ $image }}" class="" />
+                    @if ($project->portrait_images == true) 
+                        <img class="w-full rounded-md md:w-9/12 xl:w-4/12 2xl:w-3/12 3xl:w-2/12" src="{{ $image }}" class="" />
+                    @else 
+                        <img class="w-full rounded-md md:w-9/12 xl:w-5/12" src="{{ $image }}" class="" />
+                    @endif
                 @endforeach
             </div>
             <img src="/images/doodles/projects-squares-mobile.svg" alt="Tree" class="absolute bottom-20 w-72 xl:hidden">

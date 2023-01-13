@@ -40,7 +40,8 @@ class Project extends Model
         'brief_description',
         'tags',
         'images',
-        'thumb_image'
+        'thumb_image',
+        'portrait_images'
     ];
 
     public function setThumbImageAttribute($value)

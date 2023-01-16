@@ -40,7 +40,6 @@ class PostCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('title');
-        CRUD::column('image_url');
         CRUD::column('content');
         CRUD::column('tags');
         CRUD::column('created_at');
@@ -61,8 +60,13 @@ class PostCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
+        $this->crud->setValidation([
+            'title' => 'required|max:255',
+            'content' => 'required',
+            'tags' => 'max:255'
+        ]);
+        
         CRUD::field('title');
-        CRUD::field('image_url')->type('upload');
         CRUD::field('content')->type('summernote');
         CRUD::field('tags');
 

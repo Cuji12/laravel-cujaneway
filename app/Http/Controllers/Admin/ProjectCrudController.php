@@ -21,7 +21,7 @@ class ProjectCrudController extends CrudController
 
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
-     * 
+     *
      * @return void
      */
     public function setup()
@@ -33,7 +33,7 @@ class ProjectCrudController extends CrudController
 
     /**
      * Define what happens when the List operation is loaded.
-     * 
+     *
      * @see  https://backpackforlaravel.com/docs/crud-operation-list-entries
      * @return void
      */
@@ -50,7 +50,7 @@ class ProjectCrudController extends CrudController
 
     /**
      * Define what happens when the Create operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-create
      * @return void
      */
@@ -58,11 +58,10 @@ class ProjectCrudController extends CrudController
     {
         $this->crud->setValidation([
             'name' => 'required|max:255',
-            'tags' => 'max:255',
+            'tags' => 'max:255|required',
             'description' => 'required',
             'images' => 'sometimes|required',
             'portrait_images' => 'boolean',
-            'url' => 'active_url'
         ]);
 
         CRUD::field('name');
@@ -75,7 +74,7 @@ class ProjectCrudController extends CrudController
 
     /**
      * Define what happens when the Update operation is loaded.
-     * 
+     *
      * @see https://backpackforlaravel.com/docs/crud-operation-update
      * @return void
      */

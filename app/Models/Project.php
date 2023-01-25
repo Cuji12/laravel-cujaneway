@@ -40,20 +40,8 @@ class Project extends Model
         'brief_description',
         'tags',
         'images',
-        'thumb_image',
         'portrait_images'
     ];
-
-    public function setThumbImageAttribute($value)
-    {
-        $attribute_name = "thumb_image";
-        $disk = "public";
-        $destination_path = "";
-
-        $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path, $fileName = null);
-
-    // return $this->attributes[{$attribute_name}]; // uncomment if this is a translatable field
-    }
 
     public function setImagesAttribute($value)
     {
@@ -152,12 +140,12 @@ class Project extends Model
         }
     }
 
-    public function getThumbImage() 
+    public function getThumbImage()
     {
         return Storage::url($this->thumb_image);
     }
 
-    public function getProjectImages() 
+    public function getProjectImages()
     {
         $images = [];
         foreach ($this->images as $image) {
@@ -173,7 +161,7 @@ class Project extends Model
 
         return $projects->random(2);
     }
-    
+
     public function getTagsAsArray(): Array
     {
         return explode(',', trim($this->tags));

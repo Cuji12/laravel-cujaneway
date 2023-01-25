@@ -20,6 +20,7 @@ services:
             XDEBUG_CONFIG: "${SAIL_XDEBUG_CONFIG:-client_host=host.docker.internal}"
         volumes:
             - ".:/var/www/html"
+            - "images:/var/www/html/storage/app/public"
         networks:
             - sail
         depends_on:
@@ -103,4 +104,6 @@ volumes:
     sail-redis:
         driver: local
     sail-meilisearch:
+        driver: local
+    images:
         driver: local

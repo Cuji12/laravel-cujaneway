@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\ProjectRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
@@ -63,11 +62,10 @@ class ProjectCrudController extends CrudController
             'images' => 'sometimes|required',
             'portrait_images' => 'boolean',
         ]);
-
         CRUD::field('name');
         CRUD::field('tags');
         CRUD::field('description');
-        CRUD::field('images')->type('upload_multiple')->upload('true');
+        CRUD::field('images')->type('upload_multiple')->upload('true')->disk('public');
         CRUD::field('portrait_images');
         CRUD::field('url')->type('url');
     }

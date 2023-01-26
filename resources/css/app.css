@@ -163,47 +163,40 @@ textarea {
         display: flex !important;
     }
 
-    .scale-test {
-        animation-name: test;
-        animation-duration: 3s;
-        animation-timing-function: linear;
-        z-index: 10;
+    /*.enlarge-animation {*/
+    /*    animation-name: enlarge;*/
+    /*    animation-duration: 0.7s;*/
+    /*    animation-timing-function: ease-in-out;*/
+    /*    animation-fill-mode: forwards;*/
+    /*}*/
+
+    .enlarge-animation-revert {
+        animation-name: enlarge;
+        animation-duration: 0.7s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: backwards;
+        animation-direction: revert;
+        animation-play-state: paused;
     }
 
-    @keyframes test {
+    .play-animation {
+        animation-play-state: running;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes enlarge {
         from {
             top: 0;
             left: 0;
             transform: translate(0%, 0%) scale(1);
+            z-index: 1;
         }
-        /*0% {*/
-
-        /*}*/
-        /*25% {*/
-        /*    top: 12.5%;*/
-        /*    left: 12.5%;*/
-        /*    transform: translate(-12.5%, -12.5%) scale(1.25);*/
-        /*}*/
-        /*50% {*/
-        /*    top: 25%;*/
-        /*    left: 25%;*/
-        /*    transform: translate(-25%, -25%) scale(1.5);*/
-        /*}*/
-        /*75% {*/
-        /*    top: 37.5%;*/
-        /*    left: 37.5%;*/
-        /*    transform: translate(-37.5%, -37.5%) scale(1.75);*/
-        /*}*/
-        /*100% {*/
-        /*    top: 50%;*/
-        /*    left: 50%;*/
-        /*    transform: translate(-50%, -50%) scale(2);*/
-        /*}*/
         to {
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(2);
-            animation-play-state: paused;
+            transform: translate(-25%, -50%) scale(2);
+            z-index: 10;
         }
     }
 }

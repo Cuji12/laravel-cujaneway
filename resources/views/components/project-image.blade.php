@@ -16,14 +16,15 @@
     src="{{ $image }}"
     x-on:click="enlarge = ! enlarge"
     x-on:click.outside="enlarge = false"
-    x-bind:class="{'scale-test': enlarge}"
+    x-bind:class="enlarge ? 'play-animation' : ''"
 
     @class([
+        'enlarge-animation-revert',
         'cursor-pointer',
         'relative',
         'w-full',
         'rounded-md',
-        'scale-50' => ! 'enlarge'
+        'scale-50' => ! 'enlarge',
     ])
     />
 

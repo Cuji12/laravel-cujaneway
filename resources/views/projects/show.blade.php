@@ -1,24 +1,20 @@
-@php
-    
-@endphp
-
 @extends('layouts.app')
 
-@section('title') 
+@section('title')
     {{ $project->name }}
 @endsection
 
 @section('header')
-    <x-header headerBgColor="bg-white"/>
+    <x-header headerBgColor="bg-white" />
 @endsection()
 
 @section('content')
     <main class="flex flex-row-reverse">
-        <div 
-        class="relative flex flex-col w-11/12 p-6 rounded-md bg-pink pb-96 xl:w-11/12 3xl:w-5/6 lg:w-9/12" 
+        <div
+        class="relative flex flex-col w-11/12 p-6 rounded-md bg-pink pb-96 xl:w-11/12 3xl:w-5/6 lg:w-9/12"
         x-data="{ h1Height: $refs.projectName.getBoundingClientRect().height }">
             <div class="relative h-24">
-                <h1 
+                <h1
                 x-ref="projectName"
                 class="absolute text-3xl font-bold tracking-widest lg:text-5xl xl:text-6xl xl:n-left-24 top-10 n-left-12 md:text-4xl md:n-left-13">
                     {{ $project->name }}
@@ -30,11 +26,7 @@
             @endif
             <div class="flex flex-col flex-wrap content-center justify-center w-full mt-6 gap-y-4 xl:flex-row xl:gap-x-4">
                 @foreach($project->getProjectImages() as $image)
-                    @if ($project->portrait_images == true) 
-                        <img class="w-full rounded-md md:w-9/12 xl:w-4/12 2xl:w-3/12 3xl:w-2/12" src="{{ $image }}" class="" />
-                    @else 
-                        <img class="w-full rounded-md md:w-9/12 xl:w-5/12" src="{{ $image }}" class="" />
-                    @endif
+                    <x-project-image :image="$image" :project="$project" />
                 @endforeach
             </div>
             <img src="/images/doodles/projects-squares-mobile.svg" alt="Tree" class="absolute bottom-20 w-72 xl:hidden">

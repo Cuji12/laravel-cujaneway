@@ -162,4 +162,11 @@ textarea {
     .flex-important {
         display: flex !important;
     }
+
+    .scale-test {
+        top: 50%;
+        left: 50%;
+        position: ixed;
+        transform: translate(-50%,-50%) scale(2.1);
+    }
 }

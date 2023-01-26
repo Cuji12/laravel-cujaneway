@@ -1,66 +1,30 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Installation 
+1. Install the repository `git clone https://github.com/Cuji12/laravel-cujaneway.git`
+2. Ensure you have PHP 8.1+ installed on your machine with the necessary extensions enabled. You can find a list of what extensions you need by using: `composer check-platform-reqs` in the project folder.
+3. After enabling the necessary PHP extensions, run `composer install`. 
+4. You'll need Node 16+ to use Vite with this project, I recommend installing the latest LTS.
+5. Run `npm install`.
+6. Create a .env file by copying the contents of the .env-example file and populate the values needed to connect to the DB and seed it.
+7. Generate an app key `php artisan key:generate`.
+8. Open Bash in the PHP container with `docker exec -it laravel-cujaneway-cujaneway-1 bash` (don't mind the stupid name).
+9. Run the migrations and seed the DB `php artisan migrate | php artisan db:seed`.
+10. Sail is used to build the containers & interact with Docker, run `./vendor/bin/sail up` in the root project folder.
+11. After your containers have been built and are running, run the local development server to enable Hot Module Reloading and compile your assets `npm run dev`.
+12. Navigate to http://localhost:80 and you're all set!
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Fly.io
+This project is deployed to Fly.io, taking the Docker image and transmogrifying them into Firecracker Micro VMs, to deploy to Fly.io you'll need to create an account with them and authorize your usage of the CLI with the given account. 
 
-## About Laravel
+Here are some helpful commands:
+- Deploy from your working directory: `fly deploy`
+- SSH into the production server: `fly ssh console`
+- Print list of SSL certs: `fly certs list`
+- Manually scale server: `fly scale {256, 512, 1024, 2048, 4096}`
+- Set production secrets (fly.toml is in source control, use this to set secrets in production like DB username & password): `fly secrets set MY_SECRET=SECRET_VALUE`
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Helpful Stuff
+Running `./vendor/bin/sail up` is clearly taxing on the fingers so lets create an alias.
+1. Open your terminal and enter `alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'`.
+2. Restart your terminal, and now you'll have access to `sail up` and all other `sail` commands.
+3. This project uses Laravel Backpack, navigate to http://localhost/admin and enter the details you seeded into the DB. 
 
--   [Simple, fast routing engine](https://laravel.com/docs/routing).
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--   [Robust background job processing](https://laravel.com/docs/queues).
--   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
--   **[Vehikl](https://vehikl.com/)**
--   **[Tighten Co.](https://tighten.co)**
--   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
--   **[64 Robots](https://64robots.com)**
--   **[Cubet Techno Labs](https://cubettech.com)**
--   **[Cyber-Duck](https://cyber-duck.co.uk)**
--   **[Many](https://www.many.co.uk)**
--   **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
--   **[DevSquad](https://devsquad.com)**
--   **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
--   **[OP.GG](https://op.gg)**
--   **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
--   **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

@@ -33,4 +33,4 @@
             <img src="/images/doodles/projects-squares-desktop.svg" alt="Tree" class="absolute hidden bottom-20 n-left-24 w-72 xl:block 3xl:n-left-52 4xl:w-80">
         </div>
     </main>
-@endsection#
+@endsection

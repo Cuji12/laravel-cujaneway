@@ -164,9 +164,46 @@ textarea {
     }
 
     .scale-test {
-        top: 50%;
-        left: 50%;
-        position: ixed;
-        transform: translate(-50%,-50%) scale(2.1);
+        animation-name: test;
+        animation-duration: 3s;
+        animation-timing-function: linear;
+        z-index: 10;
+    }
+
+    @keyframes test {
+        from {
+            top: 0;
+            left: 0;
+            transform: translate(0%, 0%) scale(1);
+        }
+        /*0% {*/
+
+        /*}*/
+        /*25% {*/
+        /*    top: 12.5%;*/
+        /*    left: 12.5%;*/
+        /*    transform: translate(-12.5%, -12.5%) scale(1.25);*/
+        /*}*/
+        /*50% {*/
+        /*    top: 25%;*/
+        /*    left: 25%;*/
+        /*    transform: translate(-25%, -25%) scale(1.5);*/
+        /*}*/
+        /*75% {*/
+        /*    top: 37.5%;*/
+        /*    left: 37.5%;*/
+        /*    transform: translate(-37.5%, -37.5%) scale(1.75);*/
+        /*}*/
+        /*100% {*/
+        /*    top: 50%;*/
+        /*    left: 50%;*/
+        /*    transform: translate(-50%, -50%) scale(2);*/
+        /*}*/
+        to {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(2);
+            animation-play-state: paused;
+        }
     }
 }

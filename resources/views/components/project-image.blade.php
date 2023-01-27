@@ -2,10 +2,7 @@
     'image',
     'project'
 ])
-<div class="absolute hidden w-screen h-screen bg-red">
-</div>
 <div
-    x-data="{ enlarge: false }"
     @class([
         'md:w-9/12',
         'xl:w-5/12',
@@ -13,23 +10,13 @@
         '3xl:w-2/12' => $project->portrait_images,
  ])>
     <img
-    src="{{ $image }}"
-    x-on:click="enlarge = ! enlarge"
-    x-on:click.outside="enlarge = false"
-    x-bind:class="enlarge ? 'play-animation' : ''"
-
-    @class([
-        'enlarge-animation-revert',
-        'cursor-pointer',
-        'relative',
-        'w-full',
-        'rounded-md',
-        'scale-50' => ! 'enlarge',
-    ])
+        class="cursor-pointer w-full rounded-md relative project-image"
+        src="{{ $image }}"
+        x-on:click.stop="toggleAnimationOn"
+        x-on:click.outside="toggleAnimationOff"
     />
 
     <div
-        x-bind:class="enlarge ? 'inline-block' : ''"
         @class([
               'hidden',
               'relative',

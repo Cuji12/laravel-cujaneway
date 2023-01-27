@@ -9,7 +9,8 @@
 @endsection()
 
 @section('content')
-    <main class="flex flex-row-reverse">
+    <img alt="Project image" src="" class="hidden fixed z-20" id="animation-image"/>
+    <main id="main" class="flex flex-row-reverse">
         <div
         class="relative flex flex-col w-11/12 p-6 rounded-md bg-pink pb-96 xl:w-11/12 3xl:w-5/6 lg:w-9/12"
         x-data="{ h1Height: $refs.projectName.getBoundingClientRect().height }">
@@ -34,3 +35,107 @@
         </div>
     </main>
 @endsection
+
+<script>
+    function toggleAnimationOn (e) {
+        let image = document.getElementById('animation-image');
+        let mainElement = document.getElementById('main');
+        let headerElement = document.getElementById('header');
+        let projectImages = document.querySelectorAll('.project-image');
+
+        projectImages.forEach(element => {
+            element.classList.add('pointer-events-none');
+        });
+
+        image.style.top = e.target.y;
+        image.style.left = e.target.x;
+        image.src = e.target.src;
+        image.height = e.target.height;
+        image.width = e.target.width;
+        image.classList.remove('hidden');
+
+        mainElement.animate([
+            { filter: 'grayscale(0) blur(0)' },
+            { filter: 'grayscale(1) blur(1rem)' }
+        ], {
+            duration: 500,
+            fill: 'forwards',
+            easing: 'ease-in-out'
+        });
+        headerElement.animate([
+            { filter: 'grayscale(0) blur(0)' },
+            { filter: 'grayscale(1) blur(1rem)' }
+        ], {
+            duration: 500,
+            fill: 'forwards',
+            easing: 'ease-in-out'
+        });
+        image.animate([
+            { transform: `translate(0%, 0%) scale(1)`, top: e.target.y, left: e.target.x },
+            { transform: 'translate(-50%, -50%) scale(2.5)', top: '50%', left: '50%' }
+        ], {
+            duration: 500,
+            fill: 'forwards',
+            easing: 'ease-in-out'
+        });
+
+        e.target.id = 'activeImage';
+        image.setAttribute('enlarge', 'true');
+        image.setAttribute('triggered', 'false');
+    }
+
+    function toggleAnimationOff () {
+        let image = document.getElementById('animation-image');
+
+        if (document.getElementById('activeImage') && image.getAttribute('triggered') == 'false') {
+            let activeImage = document.getElementById('activeImage');
+            let mainElement = document.getElementById('main');
+            let headerElement = document.getElementById('header');
+
+            mainElement.animate([
+                { filter: 'grayscale(1) blur(1rem)' },
+                { filter: 'grayscale(0) blur(0)' }
+            ], {
+                duration: 500,
+                fill: 'forwards',
+                easing: 'ease-in-out'
+            });
+            headerElement.animate([
+                { filter: 'grayscale(1) blur(1rem)' },
+                { filter: 'grayscale(0) blur(0)' }
+            ], {
+                duration: 500,
+                fill: 'forwards',
+                easing: 'ease-in-out'
+            });
+            image.animate([
+                { transform: 'translate(-50%, -50%) scale(2.5)', top: '50%', left: '50%' },
+                { transform: `translate(0%, 0%) scale(1)`, top: activeImage.y, left: activeImage.x }
+            ], {
+                duration: 500,
+                fill: 'forwards',
+                easing: 'ease-in-out'
+            }).onfinish = toggleAnimationClasses;
+
+            image.setAttribute('enlarge', 'false');
+            image.setAttribute('triggered', 'true');
+        }
+    }
+
+    function toggleAnimationClasses () {
+        let image = document.getElementById('animation-image');
+        let activeImage = document.getElementById('activeImage');
+        let projectImages = document.querySelectorAll('.project-image');
+
+        if (image.getAttribute('enlarge') == 'false') {
+            activeImage.id = '';
+            image.classList.remove('enlarge-animation');
+            image.classList.add('hidden');
+            image.setAttribute('enlarge', 'unset');
+
+            projectImages.forEach(element => {
+                element.classList.remove('pointer-events-none');
+            });
+        }
+    }
+</script>

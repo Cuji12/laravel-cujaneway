@@ -8,7 +8,7 @@
         <p class="mb-4 sm:hidden">{{ strip_tags(substr($post->content, 0, 150)) . '...' }}</p>
         <p class="hidden mb-4 sm:block 3xl:hidden">{{ strip_tags(substr($post->content, 0, 250)) . '...' }}</p>
         <p class="hidden mb-4 3xl:block">{{ strip_tags(substr($post->content, 0, 300)) . '...' }}</p>
-        <div class="flex content-center gap-x-3">
+        <div class="flex content-center gap-x-3 flex-wrap gap-y-3">
             @foreach($post->getTagsAsArray() as $tag)
                 <div class="px-4 text-sm rounded-full bg-pink">
                     <p>{{ $tag }}</p>

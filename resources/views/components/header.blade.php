@@ -2,7 +2,7 @@
     'headerBgColor'
 ])
 
-<header class="flex justify-between items-center h-20 xl:h-24 xl:px-12 px-8 5xl:justify-around {{ $headerBgColor }}">
+<header id="header" class="flex justify-between items-center h-20 xl:h-24 xl:px-12 px-8 5xl:justify-around {{ $headerBgColor }}">
     <a href="{{route('site.index') }}">
         <img class="logo" src="/images/logo.png" alt="Website Logo." class="h-full"/>
     </a>
@@ -26,7 +26,7 @@
             <li class="ml-5 text-green">
                 <a href="mailto:hello@cujaneway.co.uk">
                     hello@cujaneway.co.uk
-                </a>               
+                </a>
             </li>
         </ul>
     </nav>

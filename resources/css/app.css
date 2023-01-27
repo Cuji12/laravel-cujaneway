@@ -163,40 +163,77 @@ textarea {
         display: flex !important;
     }
 
-    /*.enlarge-animation {*/
-    /*    animation-name: enlarge;*/
-    /*    animation-duration: 0.7s;*/
-    /*    animation-timing-function: ease-in-out;*/
-    /*    animation-fill-mode: forwards;*/
-    /*}*/
-
-    .enlarge-animation-revert {
+    .enlarge-animation {
         animation-name: enlarge;
         animation-duration: 0.7s;
         animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+    .enlarge-animation-revert {
+        animation-name: enlarge-revert;
+        animation-duration: 0.7s;
+        animation-timing-function: ease-in-out;
         animation-fill-mode: backwards;
-        animation-direction: revert;
-        animation-play-state: paused;
     }
 
-    .play-animation {
-        animation-play-state: running;
-        animation-direction: normal;
+    .enlarge-animation-bg {
+        animation: enlarge-bg;
+        animation-duration: 0.7s;
+        animation-timing-fuction: ease-in-out;
         animation-fill-mode: forwards;
+    }
+
+    .enlarge-animation-bg-revert {
+        animation: enlarge-bg-revert;
+        animation-duration: 0.7s;
+        animation-timing-fuction: ease-in-out;
+        animation-fill-mode: backwards;
     }
 
     @keyframes enlarge {
         from {
-            top: 0;
-            left: 0;
             transform: translate(0%, 0%) scale(1);
-            z-index: 1;
         }
         to {
             top: 50%;
             left: 50%;
-            transform: translate(-25%, -50%) scale(2);
-            z-index: 10;
+            transform: translate(-50%, -50%) scale(2.5);
+        }
+    }
+    @keyframes enlarge-revert {
+        from {
+            top: 50%;
+            left: 50%;
+            transform: translate(-25%, -25%) scale(2.5);
+            z-index: 20;
+        }
+        to {
+            top: 0;
+            left: 0;
+            transform: translate(0%, 0%) scale(1);
+            z-index: 11;
+        }
+    }
+    @keyframes enlarge-bg {
+        from {
+            background-color: #F9FAFB;
+            opacity: 0;
+        }
+        to {
+            background-color: #e5e7eb;
+            opacity: 1;
+            filter: blur(1rem);
+        }
+    }
+    @keyframes enlarge-bg-revert {
+        from {
+            background-color: #e5e7eb;
+            opacity: 1;
+            filter: blur(1rem);
+        }
+        to {
+            background-color: #F9FAFB;
+            opacity: 0;
         }
     }
 }

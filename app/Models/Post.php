@@ -35,15 +35,6 @@ class Post extends Model
         'uri_title'
     ];
 
-    // public function setImageAttribute($value)
-    // {
-    //     $attribute_name = "image";
-    //     $disk = "public";
-    //     $destination_path = "";
-
-    //     $this->uploadFileToDisk($value, $attribute_name, $disk, $destination_path, $fileName = null);
-    // }
-
     public function getTagsAsArray(): Array
     {
         return explode(',', trim($this->tags));

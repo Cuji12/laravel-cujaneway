@@ -8,8 +8,10 @@ use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvi
 use Illuminate\Support\Facades\Event;
 use App\Observers\PostObserver;
 use App\Observers\ProjectObserver;
+use App\Observers\ImageObserver;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\Image;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -32,6 +34,7 @@ class EventServiceProvider extends ServiceProvider
     protected $observers = [
         Post::class => [PostObserver::class],
         Project::class => [ProjectObserver::class],
+        Image::class => [ImageObserver::class],
     ];
 
     /**

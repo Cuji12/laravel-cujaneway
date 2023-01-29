@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'CV')
-
+@section('description', 'My experience building web applications using PHP, JavaScript, Docker and all sorts of other tools.')
 @section('header')
     <x-header headerBgColor="bg-pink"/>
 @endsection()
@@ -30,7 +30,7 @@
             <div>
                 <h2 class="text-xl font-medium text-green md:text-2xl">Experience</h2>
                 <div class="w-full mx-auto mb-2 opacity-50 bg-green group-last:hidden" style="height: 2px;"></div>
-                
+
                 <div class="flex flex-col sm:flex-row sm:justify-between">
                     <h3 class="text-lg font-medium md:text-xl">Web Developer (contract)</h3>
                     <p class="md:text-lg">Oct 2021 - Nov 2022</p>
@@ -93,7 +93,7 @@
                 </div>
                 <p class="md:text-lg">Level 3 Extended Diploma in IT</p>
             </div>
-            
+
             <div>
                 <div class="flex flex-col sm:flex-row sm:justify-between">
                     <h3 class="text-lg font-medium md:text-xl">Loreto College</h3>

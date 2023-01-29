@@ -40,7 +40,7 @@ class PostCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('title');
-        CRUD::column('content');
+        CRUD::column('description');
         CRUD::column('tags');
         CRUD::column('created_at');
         CRUD::column('updated_at');
@@ -57,10 +57,12 @@ class PostCrudController extends CrudController
         $this->crud->setValidation([
             'title' => 'required|max:255',
             'content' => 'required',
-            'tags' => 'max:255|required'
+            'tags' => 'max:255|required',
+            'description' => 'max:255|required'
         ]);
 
         CRUD::field('title');
+        CRUD::field('description');
         CRUD::field('content')->type('summernote');
         CRUD::field('tags');
     }

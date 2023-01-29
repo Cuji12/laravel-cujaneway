@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Blog')
-@section('description', "See what I've been writing about lately.")
-
+@section('description', 'See what I\'ve been writing about lately.')
 @section('header')
     <x-header headerBgColor="bg-pink"/>
 @endsection()
@@ -13,7 +12,7 @@
     </div>
     <main class="flex flex-col items-center w-full p-8">
         <div class="max-w-screen-md sm:w-9/12 lg:w-7/12 xl:w-6/12">
-            @foreach($posts as $post) 
+            @foreach($posts as $post)
                 <x-blog-post :post="$post" />
             @endforeach
         </div>

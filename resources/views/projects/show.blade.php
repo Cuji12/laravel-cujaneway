@@ -4,6 +4,10 @@
     {{ $project->name }}
 @endsection
 
+@section('description')
+    {{ $project->description }}
+@endsection
+
 @section('header')
     <x-header headerBgColor="bg-white" />
 @endsection()

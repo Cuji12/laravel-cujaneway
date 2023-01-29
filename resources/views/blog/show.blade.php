@@ -4,6 +4,10 @@
     {{ $post->title }}
 @endsection
 
+@section('description')
+    {{ $post->description }}
+@endsection
+
 @section('header')
     <x-header headerBgColor="bg-pink"/>
 @endsection()

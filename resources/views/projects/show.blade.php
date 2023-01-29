@@ -14,14 +14,12 @@
         <div
         class="relative flex flex-col w-11/12 p-6 rounded-md bg-pink pb-96 xl:w-11/12 3xl:w-5/6 lg:w-9/12"
         x-data="{ h1Height: $refs.projectName.getBoundingClientRect().height }">
-            <div class="relative h-24">
-                <h1
+            <h1
                 x-ref="projectName"
-                class="absolute text-3xl font-bold tracking-widest lg:text-5xl xl:text-6xl xl:n-left-24 top-10 n-left-12 md:text-4xl md:n-left-13">
+                class="relative text-4xl font-bold tracking-widest lg:text-5xl xl:text-6xl xl:n-left-18 top-10 sm:n-left-12 md:text-4xl md:n-left-13">
                     {{ $project->name }}
-                </h1>
-            </div>
-            <p class="xl:w-9/12 lg:text-lg xl:text-xl xl:pt-4 3xl:w-7/12" :class="h1Height > 50 ? 'pt-8' : 'pt-0'">{{ $project->description }}</p>
+            </h1>
+            <p class="xl:w-9/12 lg:text-lg xl:text-xl max-w-3xl mt-12">{{ $project->description }}</p>
             @if (isset($project->url))
                 <a target="_blank" class="px-5 py-2 mt-4 mb-4 font-medium text-white rounded-sm cursor-pointer bg-green w-28 hover:bg-darker-green" href="{{ $project->url }}">Visit Site</a>
             @endif
@@ -71,7 +69,7 @@
             easing: 'ease-in-out'
         });
         image.animate([
-            { transform: `translate(0%, 0%) scale(1)`, top: e.target.y, left: e.target.x },
+            { transform: `translate(0%, 0%) scale(1)`, top: `${e.target.y}px`, left: `${e.target.x}px` },
             { transform: 'translate(-50%, -50%) scale(2.5)', top: '50%', left: '50%' }
         ], {
             duration: 500,
@@ -110,7 +108,7 @@
             });
             image.animate([
                 { transform: 'translate(-50%, -50%) scale(2.5)', top: '50%', left: '50%' },
-                { transform: `translate(0%, 0%) scale(1)`, top: activeImage.y, left: activeImage.x }
+                { transform: `translate(0%, 0%) scale(1)`, top: `${activeImage.y}px`, left: `${activeImage.x}px` }
             ], {
                 duration: 500,
                 fill: 'forwards',

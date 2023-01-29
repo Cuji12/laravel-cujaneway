@@ -20,7 +20,7 @@ services:
         volumes:
             - ".:/var/www/html"
             - type: volume
-              source: laravel-cujaneway-data
+              source: data
               target: /storage/app/public
         networks:
             - sail
@@ -106,5 +106,5 @@ volumes:
         driver: local
     sail-meilisearch:
         driver: local
-    laravel-cujaneway-data:
+    data:
         driver: local

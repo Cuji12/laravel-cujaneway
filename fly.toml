@@ -13,7 +13,8 @@ processes = []
 [env]
   APP_ENV = "production"
   APP_URL = "https://laravel-cujaneway.fly.dev"
-  APP_DEBUG = "false"
+  APP_DEBUG = "true"
+  MAIL_MAILER= "ses"
   MAIL_FROM_ADDRESS = "cu.janeway@gmail.com"
   MAIL_FROM_NAME = "www.cujaneway.co.uk"
   LOG_CHANNEL = "stderr"

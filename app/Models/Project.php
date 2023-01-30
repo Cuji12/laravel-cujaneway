@@ -40,7 +40,10 @@ class Project extends Model
         'brief_description',
         'tags',
         'images',
-        'portrait_images'
+        'portrait_images',
+        'meta_description',
+        'meta_tags',
+        'meta_author'
     ];
 
     public function setImagesAttribute($value)

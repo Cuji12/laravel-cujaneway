@@ -40,7 +40,7 @@ class PostCrudController extends CrudController
     protected function setupListOperation()
     {
         CRUD::column('title');
-        CRUD::column('description');
+        CRUD::column('meta_description');
         CRUD::column('tags');
         CRUD::column('created_at');
         CRUD::column('updated_at');
@@ -55,14 +55,18 @@ class PostCrudController extends CrudController
     protected function setupCreateOperation()
     {
         $this->crud->setValidation([
-            'title' => 'required|max:255',
+            'title' => 'max:255|required',
             'content' => 'required',
             'tags' => 'max:255|required',
-            'description' => 'max:255|required'
+            'meta_description' => 'max:255|required',
+            'meta_author' => 'max:255|required',
+            'meta_tags' => 'max:255|required',
         ]);
 
         CRUD::field('title');
-        CRUD::field('description');
+        CRUD::field('meta_description');
+        CRUD::field('meta_author');
+        CRUD::field('meta_tags');
         CRUD::field('content')->type('summernote');
         CRUD::field('tags');
     }

@@ -56,15 +56,20 @@ class ProjectCrudController extends CrudController
     protected function setupCreateOperation()
     {
         $this->crud->setValidation([
-            'name' => 'required|max:255',
+            'name' => 'max:255|required',
             'tags' => 'max:255|required',
-            'description' => 'required',
+            'description' => 'max:255|required',
             'images' => 'sometimes|required',
             'portrait_images' => 'boolean',
+            'meta_description' => 'max:255|required',
+            'meta_author' => 'max:255|required',
+            'meta_tags' => 'max:255|required',
         ]);
         CRUD::field('name');
         CRUD::field('tags');
-        CRUD::field('description');
+        CRUD::field('meta_description');
+        CRUD::field('meta_author');
+        CRUD::field('meta_tags');
         CRUD::field('images')->type('upload_multiple')->upload('true')->disk('public');
         CRUD::field('portrait_images');
         CRUD::field('url')->type('url');

@@ -33,7 +33,9 @@ class Post extends Model
         'image_url',
         'tags',
         'uri_title',
-        'description'
+        'meta_description',
+        'meta_tags',
+        'meta_author'
     ];
 
     public function getTagsAsArray(): Array

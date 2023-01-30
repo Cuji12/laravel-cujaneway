@@ -5,7 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>@yield('title')</title>
-        <meta name="description" content="@yield('description')">
+        <meta property="og:image" content="https://cujaneway.co.uk/images/logo.png" />
+        <meta property="og:description" content="@yield('meta_description')" />
+        <meta property="og:title" content="@yield('title')" />
+        <meta property="og:title" content="@yield('title')" />
+        <meta name="description" content='@yield('meta_description')' />
+        <meta name="author" content='@yield('meta_author')' />
+        <meta name="tags" content='@yield('meta_tags')' />
+
         @if(isset($blogPostCss))
         <!-- Styles / Scripts -->
             @vite(['resources/css/app.css', 'resources/css/blogPost.css', 'resources/js/app.js'])

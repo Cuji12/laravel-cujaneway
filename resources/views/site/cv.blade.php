@@ -1,7 +1,10 @@
 @extends('layouts.app')
 
 @section('title', 'CV')
-@section('description', 'My experience building web applications using PHP, JavaScript, Docker and all sorts of other tools.')
+@section('meta_description', 'Web Developer with 6+ years of experience in PHP seeking full-time & part-time PHP / Yii2 / Laravel contracts.')
+@section('meta_author', 'Cu Janeway')
+@section('meta_tags', 'Web Developer, Hire, Freelancer, Contractor, Manchester, UK, Laravel, PHP, JavaScript, AWS, Docker, Yii2')
+
 @section('header')
     <x-header headerBgColor="bg-pink"/>
 @endsection()

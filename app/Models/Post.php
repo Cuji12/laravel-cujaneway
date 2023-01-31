@@ -34,7 +34,6 @@ class Post extends Model
         'tags',
         'uri_title',
         'meta_description',
-        'meta_tags',
         'meta_author'
     ];
 

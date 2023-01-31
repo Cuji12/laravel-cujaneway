@@ -63,13 +63,12 @@ class ProjectCrudController extends CrudController
             'portrait_images' => 'boolean',
             'meta_description' => 'max:255|required',
             'meta_author' => 'max:255|required',
-            'meta_tags' => 'max:255|required',
         ]);
         CRUD::field('name');
+        CRUD::field('description');
         CRUD::field('tags');
         CRUD::field('meta_description');
         CRUD::field('meta_author');
-        CRUD::field('meta_tags');
         CRUD::field('images')->type('upload_multiple')->upload('true')->disk('public');
         CRUD::field('portrait_images');
         CRUD::field('url')->type('url');

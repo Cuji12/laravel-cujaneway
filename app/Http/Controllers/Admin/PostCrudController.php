@@ -60,13 +60,11 @@ class PostCrudController extends CrudController
             'tags' => 'max:255|required',
             'meta_description' => 'max:255|required',
             'meta_author' => 'max:255|required',
-            'meta_tags' => 'max:255|required',
         ]);
 
         CRUD::field('title');
         CRUD::field('meta_description');
         CRUD::field('meta_author');
-        CRUD::field('meta_tags');
         CRUD::field('content')->type('summernote');
         CRUD::field('tags');
     }

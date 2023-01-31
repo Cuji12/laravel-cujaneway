@@ -42,7 +42,6 @@ class Project extends Model
         'images',
         'portrait_images',
         'meta_description',
-        'meta_tags',
         'meta_author'
     ];
 

@@ -73,7 +73,7 @@
             easing: 'ease-in-out'
         });
         image.animate([
-            { transform: `translate(0%, 0%) scale(1)`, top: `${e.target.y}px`, left: `${e.target.x}px` },
+            { transform: `translate(0%, 0%) scale(1)`, top: `${e.target.clientY}px`, left: `${e.target.clientX}px` },
             { transform: 'translate(-50%, -50%) scale(2.5)', top: '50%', left: '50%' }
         ], {
             duration: 500,
@@ -112,7 +112,7 @@
             });
             image.animate([
                 { transform: 'translate(-50%, -50%) scale(2.5)', top: '50%', left: '50%' },
-                { transform: `translate(0%, 0%) scale(1)`, top: `${activeImage.y}px`, left: `${activeImage.x}px` }
+                { transform: `translate(0%, 0%) scale(1)`, top: `${activeImage.clientY}px`, left: `${activeImage.clientX}px` }
             ], {
                 duration: 500,
                 fill: 'forwards',

@@ -27,113 +27,132 @@
                     <x-project-image :image="$image" :project="$project" />
                 @endforeach
             </div>
-            <img src="/images/doodles/projects-squares-mobile.svg" alt="Tree" class="absolute bottom-20 w-72 xl:hidden">
+            <img src="/images/doodles/projects-squares-mobile.svg" alt="Tree" class="absolute bottom-20 w-68 max-w-full xl:hidden">
             <img src="/images/doodles/projects-squares-desktop.svg" alt="Tree" class="absolute hidden bottom-20 n-left-24 w-72 xl:block 3xl:n-left-52 4xl:w-80">
         </div>
     </main>
 @endsection
 
 <script>
-    function toggleAnimationOn (e) {
-        let image = document.getElementById('animation-image');
-        let mainElement = document.getElementById('main');
-        let headerElement = document.getElementById('header');
-        let projectImages = document.querySelectorAll('.project-image');
+    let imageScale = 1;
+    let image;
+    let mainElement;
+    let headerElement;
+    let projectImages;
 
-        projectImages.forEach(element => {
-            element.classList.add('pointer-events-none');
+    window.onload = function () {
+        image = document.getElementById('animation-image');
+        mainElement = document.getElementById('main');
+        headerElement = document.getElementById('header');
+        projectImages = document.querySelectorAll('.project-image');
+
+        const resizeObserver = new ResizeObserver((entries) => {
+            for (const entry of entries) {
+                console.log(entry.contentRect.width);
+                if (entry.contentRect.width <= 320) { imageScale = 1.2 }
+                else if (entry.contentRect.width <= 640) { imageScale = 1.1 }
+                else if (entry.contentRect.width <= 768) { imageScale = 1.1 }
+                else if (entry.contentRect.width <= 1024) { imageScale = 1.5 }
+                else if (entry.contentRect.width <= 1280) { imageScale = 1.8 }
+                else if (entry.contentRect.width <= 1536) { imageScale = 2.4 }
+                else if (entry.contentRect.width <= 1920) { imageScale = 2.5 }
+                else { imageScale = 2.6 }
+            }
         });
 
-        image.style.top = e.target.y;
-        image.style.left = e.target.x;
-        image.src = e.target.src;
-        image.height = e.target.height;
-        image.width = e.target.width;
-        image.classList.remove('hidden');
-
-        mainElement.animate([
-            { filter: 'grayscale(0) blur(0)' },
-            { filter: 'grayscale(1) blur(1rem)' }
-        ], {
-            duration: 500,
-            fill: 'forwards',
-            easing: 'ease-in-out'
-        });
-        headerElement.animate([
-            { filter: 'grayscale(0) blur(0)' },
-            { filter: 'grayscale(1) blur(1rem)' }
-        ], {
-            duration: 500,
-            fill: 'forwards',
-            easing: 'ease-in-out'
-        });
-        console.log(e.target);
-        image.animate([
-            { transform: `translate(0%, 0%) scale(1)`, top: `${e.target.y}px`, left: `${e.target.x}px` },
-            { transform: 'translate(-50%, -50%) scale(2.5)', top: '50%', left: '50%' }
-        ], {
-            duration: 500,
-            fill: 'forwards',
-            easing: 'ease-in-out'
-        });
-
-        e.target.id = 'activeImage';
-        image.setAttribute('enlarge', 'true');
-        image.setAttribute('triggered', 'false');
+        resizeObserver.observe(document.querySelector('body'));
     }
 
-    function toggleAnimationOff () {
-        let image = document.getElementById('animation-image');
+    function toggleAnimationOn(e) {
+            projectImages.forEach(element => {
+                element.classList.add('pointer-events-none');
+            });
 
-        if (document.getElementById('activeImage') && image.getAttribute('triggered') == 'false') {
-            let activeImage = document.getElementById('activeImage');
-            let mainElement = document.getElementById('main');
-            let headerElement = document.getElementById('header');
+            image.style.top = e.target.y;
+            image.style.left = e.target.x;
+            image.src = e.target.src;
+            image.height = e.target.height;
+            image.width = e.target.width;
+            image.classList.remove('hidden');
 
             mainElement.animate([
-                { filter: 'grayscale(1) blur(1rem)' },
-                { filter: 'grayscale(0) blur(0)' }
+                {filter: 'grayscale(0) blur(0)'},
+                {filter: 'grayscale(1) blur(1rem)'}
             ], {
                 duration: 500,
                 fill: 'forwards',
                 easing: 'ease-in-out'
             });
             headerElement.animate([
-                { filter: 'grayscale(1) blur(1rem)' },
-                { filter: 'grayscale(0) blur(0)' }
+                {filter: 'grayscale(0) blur(0)'},
+                {filter: 'grayscale(1) blur(1rem)'}
             ], {
                 duration: 500,
                 fill: 'forwards',
                 easing: 'ease-in-out'
             });
             image.animate([
-                { transform: 'translate(-50%, -50%) scale(2.5)', top: '50%', left: '50%' },
-                { transform: `translate(0%, 0%) scale(1)`, top: `${activeImage.y}px`, left: `${activeImage.x}px` }
+                {transform: `translate(0%, 0%) scale(1)`, top: `${e.target.y}px`, left: `${e.target.x}px`},
+                {transform: `translate(-50%, -50%) scale(${imageScale})`, top: '50%', left: '50%'}
             ], {
                 duration: 500,
                 fill: 'forwards',
                 easing: 'ease-in-out'
-            }).onfinish = toggleAnimationClasses;
-
-            image.setAttribute('enlarge', 'false');
-            image.setAttribute('triggered', 'true');
-        }
-    }
-
-    function toggleAnimationClasses () {
-        let image = document.getElementById('animation-image');
-        let activeImage = document.getElementById('activeImage');
-        let projectImages = document.querySelectorAll('.project-image');
-
-        if (image.getAttribute('enlarge') == 'false') {
-            activeImage.id = '';
-            image.classList.remove('enlarge-animation');
-            image.classList.add('hidden');
-            image.setAttribute('enlarge', 'unset');
-
-            projectImages.forEach(element => {
-                element.classList.remove('pointer-events-none');
             });
+
+            e.target.id = 'activeImage';
+            image.setAttribute('enlarge', 'true');
+            image.setAttribute('triggered', 'false');
         }
-    }
+
+        function toggleAnimationOff() {
+            let image = document.getElementById('animation-image');
+
+            if (document.getElementById('activeImage') && image.getAttribute('triggered') == 'false') {
+                let activeImage = document.getElementById('activeImage');
+
+                mainElement.animate([
+                    {filter: 'grayscale(1) blur(1rem)'},
+                    {filter: 'grayscale(0) blur(0)'}
+                ], {
+                    duration: 500,
+                    fill: 'forwards',
+                    easing: 'ease-in-out'
+                });
+                headerElement.animate([
+                    {filter: 'grayscale(1) blur(1rem)'},
+                    {filter: 'grayscale(0) blur(0)'}
+                ], {
+                    duration: 500,
+                    fill: 'forwards',
+                    easing: 'ease-in-out'
+                });
+                image.animate([
+                    {transform: `translate(-50%, -50%) scale(${imageScale})`, top: '50%', left: '50%'},
+                    {transform: `translate(0%, 0%) scale(1)`, top: `${activeImage.y}px`, left: `${activeImage.x}px`}
+                ], {
+                    duration: 500,
+                    fill: 'forwards',
+                    easing: 'ease-in-out'
+                }).onfinish = toggleAnimationClasses;
+
+                image.setAttribute('enlarge', 'false');
+                image.setAttribute('triggered', 'true');
+            }
+        }
+
+        function toggleAnimationClasses() {
+            let activeImage = document.getElementById('activeImage');
+
+            if (image.getAttribute('enlarge') == 'false') {
+                activeImage.id = '';
+                image.classList.remove('enlarge-animation');
+                image.classList.add('hidden');
+                image.setAttribute('enlarge', 'unset');
+
+                projectImages.forEach(element => {
+                    element.classList.remove('pointer-events-none');
+                });
+            }
+        }
 </script>

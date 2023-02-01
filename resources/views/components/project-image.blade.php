@@ -10,7 +10,7 @@
         '3xl:w-2/12' => $project->portrait_images,
  ])>
     <img
-        class="cursor-pointer w-full rounded-md relative project-image"
+        class="cursor-pointer w-full rounded-md relative project-image hover:brightness-90 hover:drop-shadow-md"
         src="{{ $image }}"
         x-on:click.stop="toggleAnimationOn"
         x-on:click.outside="toggleAnimationOff"

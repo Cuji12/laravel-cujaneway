@@ -9,7 +9,7 @@
 
 @section('content')
     <img alt="Project image" src="" class="hidden fixed z-20" id="animation-image"/>
-    <main id="main" class="flex flex-row-reverse">
+    <main class="flex flex-row-reverse">
         <div
         class="relative flex flex-col w-11/12 p-6 rounded-md bg-pink pb-96 xl:w-11/12 3xl:w-5/6 lg:w-9/12"
         x-data="{ h1Height: $refs.projectName.getBoundingClientRect().height }">
@@ -38,17 +38,18 @@
     let image;
     let mainElement;
     let headerElement;
+    let footerElement;
     let projectImages;
 
     window.onload = function () {
         image = document.getElementById('animation-image');
-        mainElement = document.getElementById('main');
-        headerElement = document.getElementById('header');
+        mainElement = document.querySelector('main');
+        headerElement = document.querySelector('header');
+        footerElement = document.querySelector('footer');
         projectImages = document.querySelectorAll('.project-image');
 
         const resizeObserver = new ResizeObserver((entries) => {
             for (const entry of entries) {
-                console.log(entry.contentRect.width);
                 if (entry.contentRect.width <= 320) { imageScale = 1.2 }
                 else if (entry.contentRect.width <= 640) { imageScale = 1.1 }
                 else if (entry.contentRect.width <= 768) { imageScale = 1.1 }
@@ -91,6 +92,14 @@
                 fill: 'forwards',
                 easing: 'ease-in-out'
             });
+            footerElement.animate([
+                {filter: 'grayscale(0) blur(0)'},
+                {filter: 'grayscale(1) blur(1rem)'}
+            ], {
+                duration: 500,
+                fill: 'forwards',
+                easing: 'ease-in-out'
+            });
             image.animate([
                 {transform: `translate(0%, 0%) scale(1)`, top: `${e.target.y}px`, left: `${e.target.x}px`},
                 {transform: `translate(-50%, -50%) scale(${imageScale})`, top: '50%', left: '50%'}
@@ -120,6 +129,14 @@
                     easing: 'ease-in-out'
                 });
                 headerElement.animate([
+                    {filter: 'grayscale(1) blur(1rem)'},
+                    {filter: 'grayscale(0) blur(0)'}
+                ], {
+                    duration: 500,
+                    fill: 'forwards',
+                    easing: 'ease-in-out'
+                });
+                footerElement.animate([
                     {filter: 'grayscale(1) blur(1rem)'},
                     {filter: 'grayscale(0) blur(0)'}
                 ], {

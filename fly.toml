@@ -31,6 +31,10 @@ processes = []
 [deploy]
     release_command = "php /var/www/html/artisan migrate --force"
 
+[mounts]
+    source="laravel_cujaneway_storage_vol"
+    destination="/var/www/html/storage"
+
 [[services]]
   http_checks = []
   internal_port = 8080

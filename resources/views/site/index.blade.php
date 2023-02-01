@@ -2,7 +2,6 @@
 
 @section('title', 'Cu Janeway - Web Developer')
 @section('meta_description', "Hey, I'm <strong>Cu Janeway</strong>, I build applications and sometimes write about what I've been up to. Come see what I've been doing lately.")
-@section('meta_author', 'Cu Janeway')
 
 @section('header')
     <x-header headerBgColor="bg-white"/>

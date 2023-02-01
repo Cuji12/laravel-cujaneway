@@ -1,12 +1,8 @@
 @extends('layouts.app', ['blogPostCss' => true])
 
-@section('title')
-    {{ $post->title }}
-@endsection
+@section('title'){{ $post->title }}@endsection
 
-@section('description')
-    {{ $post->description }}
-@endsection
+@section('meta_description'){{ $post->description }}@endsection
 
 @section('header')
     <x-header headerBgColor="bg-pink"/>

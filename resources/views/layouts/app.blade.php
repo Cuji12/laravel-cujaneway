@@ -8,10 +8,8 @@
         <meta property="og:image" content="https://cujaneway.co.uk/images/logo.png" />
         <meta property="og:description" content="@yield('meta_description')" />
         <meta property="og:title" content="@yield('title')" />
-        <meta property="og:title" content="@yield('title')" />
         <meta name="description" content='@yield('meta_description')' />
-        <meta name="author" content='@yield('meta_author')' />
-        <meta name="tags" content='@yield('meta_tags')' />
+        <meta name="author" content='Cu Janeway' />
 
         @if(isset($blogPostCss))
         <!-- Styles / Scripts -->

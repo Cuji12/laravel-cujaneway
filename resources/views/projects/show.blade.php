@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
-@section('title')
-    {{ $project->name }}
-@endsection
-
-@section('description')
-    {{ $project->description }}
-@endsection
+@section('title'){{ $project->name }}@endsection
+@section('meta_description'){{ $project->meta_description }}@endsection
 
 @section('header')
     <x-header headerBgColor="bg-white" />

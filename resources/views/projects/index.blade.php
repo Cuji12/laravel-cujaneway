@@ -1,8 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Projects')
-@section('description', 'Some of the projects I\'ve worked on over the years.')
-@section('author', 'Cu Janeway')
+@section('meta_description', 'Some of the projects I\'ve worked on over the years.')
 
 @section('header')
     <x-header headerBgColor="bg-white"/>

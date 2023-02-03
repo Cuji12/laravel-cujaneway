@@ -8,7 +8,7 @@
 @endsection()
 
 @section('content')
-    <img alt="Project image" src="" class="hidden fixed z-20" id="animation-image"/>
+    <img alt="Project image" src="" class="hidden fixed z-20 cursor-pointer rounded-md" id="animation-image"/>
     <main class="flex flex-row-reverse">
         <div
         class="relative flex flex-col w-11/12 p-6 rounded-md bg-pink pb-96 xl:w-11/12 3xl:w-5/6 lg:w-9/12"
@@ -22,12 +22,12 @@
             @if (isset($project->url))
                 <a target="_blank" class="px-5 py-2 mt-4 mb-4 font-medium text-white rounded-sm cursor-pointer bg-green w-28 hover:bg-darker-green" href="{{ $project->url }}">Visit Site</a>
             @endif
-            <div class="flex flex-col flex-wrap content-center justify-center w-full mt-6 gap-y-4 xl:flex-row xl:gap-x-4">
+            <div id="portrait-images" class="flex flex-col flex-wrap content-center justify-center w-full mt-6 gap-y-4 sm:flex-row sm:gap-x-4" data-portrait-images="{{ $project->portrait_images }}">
                 @foreach($project->getProjectImages() as $image)
                     <x-project-image :image="$image" :project="$project" />
                 @endforeach
             </div>
-            <img src="/images/doodles/projects-squares-mobile.svg" alt="Tree" class="absolute bottom-20 w-68 max-w-full xl:hidden">
+            <img src="/images/doodles/projects-squares-mobile.svg" alt="Tree" class="absolute bottom-20 w-62 sm:w-72 max-w-full xl:hidden">
             <img src="/images/doodles/projects-squares-desktop.svg" alt="Tree" class="absolute hidden bottom-20 n-left-24 w-72 xl:block 3xl:n-left-52 4xl:w-80">
         </div>
     </main>
@@ -40,6 +40,7 @@
     let headerElement;
     let footerElement;
     let projectImages;
+    let portraitImages;
 
     window.onload = function () {
         image = document.getElementById('animation-image');
@@ -47,17 +48,18 @@
         headerElement = document.querySelector('header');
         footerElement = document.querySelector('footer');
         projectImages = document.querySelectorAll('.project-image');
+        portraitImages = document.getElementById('portrait-images').getAttribute('data-portrait-images');
 
         const resizeObserver = new ResizeObserver((entries) => {
             for (const entry of entries) {
                 if (entry.contentRect.width <= 320) { imageScale = 1.2 }
-                else if (entry.contentRect.width <= 640) { imageScale = 1.1 }
-                else if (entry.contentRect.width <= 768) { imageScale = 1.1 }
-                else if (entry.contentRect.width <= 1024) { imageScale = 1.5 }
-                else if (entry.contentRect.width <= 1280) { imageScale = 1.8 }
-                else if (entry.contentRect.width <= 1536) { imageScale = 2.4 }
-                else if (entry.contentRect.width <= 1920) { imageScale = 2.5 }
-                else { imageScale = 2.6 }
+                else if (entry.contentRect.width <= 640) { portraitImages == 1 ? imageScale = 1.2 : imageScale = 1.1 }
+                else if (entry.contentRect.width <= 768) { portraitImages == 1 ? imageScale = 1.2 : imageScale = 1.1 }
+                else if (entry.contentRect.width <= 1024) { portraitImages == 1 ? imageScale = 1.3 : imageScale = 1.5 }
+                else if (entry.contentRect.width <= 1280) { portraitImages == 1 ? imageScale = 1.6 : imageScale = 1.8 }
+                else if (entry.contentRect.width <= 1536) { portraitImages == 1 ? imageScale = 1.7 : imageScale = 2.4 }
+                else if (entry.contentRect.width <= 1920) { portraitImages == 1 ? imageScale = 2 : imageScale = 2.5 }
+                else { imageScale = 2.2 }
             }
         });
 

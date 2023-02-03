@@ -4,6 +4,8 @@
 ])
 <div
     @class([
+        'max-w-12' => $project->portrait_images,
+        'sm:w-5/12' => $project->portrait_images,
         'md:w-9/12',
         'xl:w-5/12',
         '2xl:w-3/12' => $project->portrait_images,
@@ -25,7 +27,7 @@
               'md:w-9/12',
               'xl:w-5/12',
               '2xl:w-3/12' => $project->portrait_images,
-              '3xl:w-2/12' => $project->portrait_images,
+              '3xl:w-2/12' => $project->portrait_images
           ])
     >
     </div>

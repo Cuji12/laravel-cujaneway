@@ -159,6 +159,10 @@ textarea {
         height: 93vh;
     }
 
+    .max-w-12 {
+        max-width: 16rem;
+    }
+
     .logo {
         max-width: 140px;
     }

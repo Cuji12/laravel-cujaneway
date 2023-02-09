@@ -11,7 +11,7 @@
 @section('content')
     <x-page-title title="{!! $post->title !!}" lgWidth="lg:w-8/12"/>
     <main class="flex flex-col items-center justify-center px-8">
-        <div class="flex flex-col w-full pt-10 sm:w-9/12 lg:w-8/12 xl:w-9/12 2xl:w-8/12 3xl:w-6/12 4xl:w-5/12 5xl:w-4/12 3xl:text-lg">
+        <div class="blog-post-content flex flex-col w-full pt-4 sm:w-9/12 lg:w-8/12 xl:w-9/12 2xl:w-8/12 3xl:w-6/12 4xl:w-5/12 5xl:w-4/12 3xl:text-lg">
             {!! $post->content !!}
             <div class="mx-auto my-4 opacity-50 bg-green group-last:hidden" style="height: 2px; width: 100%;"></div>
         </div>

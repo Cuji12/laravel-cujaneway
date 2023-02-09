@@ -12,7 +12,6 @@
         <meta name="author" content='Cu Janeway' />
 
         @if(isset($blogPostCss))
-        <!-- Styles / Scripts -->
             @vite(['resources/css/app.css', 'resources/css/blogPost.css', 'resources/js/app.js'])
         @else
             @vite(['resources/css/app.css', 'resources/js/app.js'])

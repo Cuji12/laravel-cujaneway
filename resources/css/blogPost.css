@@ -1,20 +1,33 @@
+* {
+    font-size: 18px;
+}
 h1 {
     font-size: 36px;
     font-weight: bold;
     margin-bottom: 10px;
+}
+a {
+    color: #07691C;
+    text-decoration: underline;
+}
+a:hover {
+    color: #044913;
 }
 .blog-post-content h2 {
     color: #07691C;
     font-size: 28px;
     font-weight: bold;
     margin: 20px 0;
-
 }
 .blog-post-content h3 {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 10px;
-
+}
+.blog-post-content h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
 }
 .blog-post-content p {
     margin: 10px 0 10px 0 ;
@@ -28,14 +41,17 @@ h1 {
     background-color: #121226;
     overflow-x: auto;
     font-weight: 400;
-    font-size: .875em;
+    font-size: 1em;
     line-height: 1.7142857;
-    margin-top: 1.4285714285714286em;
-    margin-bottom: 2.2857142857142856em;
+    margin-top: 1em;
+    margin-bottom: 1em;
     border-radius: .75rem;
     padding: 1.25rem;
     box-shadow: 0 4px 6px -1px rgba(0,0,0,.1),0 2px 4px -2px rgba(0,0,0,.1);
     display: flex;
+}
+.multiline {
+    flex-direction: column;
 }
 .blog-post-content .dollar-terminal {
     margin-right: 1rem;

@@ -1,0 +1,552 @@
+
+<p>
+    I thought I'd write a quick guide on showing how easy it is to deploy containerized Laravel applications to Fly.io, this is the process
+    I used to deploy the website you're viewing this article on and it was a lot of fun - hopefully you'll enjoy it too!
+</p>
+
+<br />
+
+<p>
+    So, there are few things we want in our production application, and we'll go through this guide in the same order, these are:
+</p>
+
+<ol>
+    <li>Web server hosting the Laravel application itself</li>
+    <li>MySQL Database</li>
+    <li>SSL Cert</li>
+    <li>Persistent volume for the storage directory</li>
+    <li>Custom domain</li>
+</ol>
+
+<br />
+
+<p>
+    This guide assumes you have an existing containerized Laravel application, if not, you can follow the first step (or just create a Laravel
+    app as you see fit) otherwise skip to the second step.
+</p>
+
+<h2>Setting up a Laravel application in Fly.io</h2>
+<h3>Prepare a Laravel App</h3>
+
+<hr />
+
+<p>
+    If you want to create a fresh application, here's how to set it up. You'll need PHP 8+ and
+    <a href="https://getcomposer.org/">composer</a>
+    installed locally. You can check your PHP version by running
+    <code>php --version</code>
+</p>
+
+<br />
+
+<div class="codeblock">
+    <span>
+        <span class="dollar-terminal">$</span> composer create-project laravel/laravel fly-laravel
+    </span>
+    <span>
+        <span class="command-terminal">cd</span> fly-laravel
+    </span>
+    <span>php artisan serve</span>
+</div>
+
+<br />
+
+<p>You should be able to visit http://localhost:8000 and see the home page. </p>
+
+<h3>Deploy to Fly.io</h3>
+
+<hr />
+
+<h4>Install Fly</h4>
+
+<p>
+    First,
+    <a href="https://fly.io/docs/hands-on/install-flyctl/">install flyctl</a>, your Fly.io app command center, and
+    <a href="https://fly.io/docs/getting-started/log-in-to-fly/#first-time-or-no-fly-account-sign-up-for-fly">sign up to Fly.io</a> if you haven't already.
+</p>
+
+<h4>Launch</h4>
+
+<p>
+    Next, we'll use the <code>launch</code> command to configure your Laravel application for Fly.
+    The <code>launch</code> command adds a few files to your code base, it'll prompt you beforehand so don't worry about it overwriting anything.
+    Now you can go ahead and run <code>fly launch</code>.
+</p>
+
+<div class="codeblock">
+    <span>
+        <span class="dollar-terminal">$</span> fly launch
+    </span>
+</div>
+
+<p>
+    When prompted to deploy now, say No.
+</p>
+
+<p>
+    If there are non-secret environment variables to set then you can modify the [env] section of the previously generated fly.toml file.
+</p>
+
+<div class="codeblock multiline">
+    <span class="text-light-blue">[env]</span>
+    <span class="text-gray-200"># Set any environment variables you want here</span>
+    <span class="text-gray-200"># Caution: Do NOT add secrets here, they will be committed to source control!</span>
+    <span>
+        <span class="text-light-blue">
+            APP_URL
+        </span>
+        = "<span class="lightGreen">https://your-app-laravel.fly.dev"</span>
+    </span>
+</div>
+
+<p>
+    For sensitive data, you should set secrets with the <a href="https://fly.io/docs/flyctl/secrets-set/">fly secrets set</a> command:
+</p>
+
+<div class="codeblock">
+    <span>
+        <span class="dollar-terminal">$</span> fly secrets set VERY_SECRET_KEY="VERY_SECRET_KEY_VALUE"
+    </span>
+</div>
+
+<p>
+    The <code>fly launch</code> command will generate a secret with a valid, random value for <code>APP_KEY</code>.
+</p>
+
+<h3>Deploy</h3>
+
+<hr />
+
+<p>
+    Finally, run <code>fly deploy</code> to build and deploy your Laravel application!
+</p>
+
+<p>
+    At this point, you should be able to visit <code>https://your-app-name.fly.dev</code> and, if you created a fresh application,
+    see your Laravel demo home page. If your homepage relies on a database then you'll see your functioning homepage after the next step.
+</p>
+
+<p>
+    But otherwise that's it for the Laravel application deployment, you can also visit your website by running <code>fly open</code>.
+</p>
+
+<p>
+    You can see a full list of fly commands with <code>fly --help</code>, go ahead and have a tinker with them if you're feeling curious 🙂.
+</p>
+
+<h3>Notes</h3>
+
+<hr />
+
+<p>
+    As mentioned before, the fly launch command adds some files to your codebase.
+</p>
+
+<p>
+    Here's what gets generated:
+</p>
+
+<ol>
+    <li>
+        <code>Dockerfile</code> - Used to build the container image that runs in Fly
+    </li>
+    <li>
+        <code>.dockerignore</code> - Used to ensure certain files don't make its way into your repository. An additional
+        note on this, make sure /public/hot is added to this file otherwise if you deploy whilst a local Vite development
+        server is running it'll deploy this file and attempt to run a local development server in production which will likely result in your
+        assets not loading as it attempts to serve them over WSS which requires specific configuration.
+    </li>
+    <li>
+        <code>fly.toml</code> - Configuration file that Fly uses for your hosted application(s)
+    </li>
+    <li>
+        <code>.fly</code> - A directory containing configuration files for running Nginx / PHP in a container
+    </li>
+</ol>
+
+<p>
+    Running <code>fly launch</code> and <code>fly deploy</code> uses the Dockerfile to build a container image, copying your application files into the resulting image.
+</p>
+
+<p>
+    Fly doesn't care about the state of your git repository - it copies whatever files are present (except for files ignored by <code>.dockerignore</code>).
+    It can trip you up when suddenly deploying from your working directory, but you'll get used to it in due time. Just make sure you're keeping your <code>.dockerignore</code> updated.
+</p>
+
+<h2>Setting up and connecting a MySQL application in Fly.io</h2>
+
+<h3>Create the App</h3>
+
+<hr />
+
+<p>
+    We'll be running MySQL as a separate application:
+</p>
+
+<div class="codeblock multiline">
+    <span># Make a directory for the MySQL app </span>
+    <span>
+        <span class="terminal-command">mkdir</span> my-mysql
+    </span>
+    <span>
+        <span class="terminal-command">cd</span> my-mysql
+    </span>
+    <span># Run `fly launch` to create an app</span>
+    <span>fly launch</span>
+</div>
+
+<p>
+    You can name the app whatever you like, I personally give it the same name as the application I'm connecting it to with the
+    "-mysql" affix. The name you give it will become the hostname our Laravel application uses to connect to the database e.g. <code>your-laravel-app-mysql.internal</code>.
+</p>
+
+<p>
+    We don't want to deploy our application just yet, there's a few more steps prior to the deployment.
+</p>
+
+<h3>Configure the App</h3>
+
+<hr />
+
+<p>
+    Let's go ahead and create a volume; if we don't, then all the data will be lost on each deployment.
+</p>
+
+<div class="codeblock multiline">
+    <span># Create a volume named "mysqldata" within our app "your-laravel-app-mysql" </span>
+    <span>fly volumes create mysqldata --size 10 # gb</span>
+</div>
+
+<p>
+    I mentioned Fly secrets before, we'll need to set some for our MySQL container:
+</p>
+
+<div class="codeblock multiline">
+    <span># Set secrets:</span>
+    <span># MYSQL_PASSWORD      - password set for user $MYSQL_USER</span>
+    <span># MYSQL_ROOT_PASSWORD - password set for user "root"</span>
+    <span>fly secrets set MYSQL_PASSWORD=password MYSQL_ROOT_PASSWORD=password</span>
+</div>
+
+<p>
+    You'll want to store these secrets somewhere secure either on your machine, password manager or a note as they're not accessible after you set them.
+</p>
+
+<p>
+    Finally, edit the <code>fly.toml</code> file generated to look like this:
+</p>
+
+<div class="codeblock multiline">
+    <span>app = "your-laravel-app-mysql" </span>
+    <span>kill_signal = "SIGINT" </span>
+    <span>kill_timeout = 5 </span>
+    <span>[mounts]</span>
+    <span class="ml-5">source="mysqldata" </span>
+    <span class="ml-5">destination="/data" </span>
+    <span>[env]</span>
+    <span class="ml-5">MYSQL_DATABASE = "some_db"</span>
+    <span class="ml-5">MYSQL_USER = "non_root_user"</span>
+    <span>[build]</span>
+    <span class="ml-5">image = "mysql:8"</span>
+    <span>[experimental]</span>
+    <span class="ml-5">cmd = [</span>
+    <span class="ml-10">"--default-authentication-plugin",</span>
+    <span class="ml-10">"mysql_native_password",</span>
+    <span class="ml-10">"--datadir",</span>
+    <span class="ml-10">"/data/mysql"</span>
+    <span class="ml-5">]</span>
+</div>
+
+<p>
+    There's a few important things to note:
+</p>
+
+<ol>
+    <li>We deleted the <code>[[services]]</code> block and everything under it. It's not needed.</li>
+    <li>We added the <code>[build]</code> section to specify an existing Docker image. We don't need to create a <code>Dockerfile</code> of our own.</li>
+    <li>The <code>env</code> section contains two non-secret environment variables that MySQL will need to initialize itself. The <code>MYSQL_USER</code>
+        here should be any user but <code>root</code>, which already exists.</li>
+    <li>We added the <code>[experimental]</code> section, which lets us pass a custom command (overriding Docker's <code>CMD</code>).</li>
+    <li>For MySQL 8, you'll want to use the mysql_native_password password plugin We also set MySQL's data directory to a subdirectory of our mounted volume.</li>
+</ol>
+
+<p>
+    lost+found directory being created. However, MySQL won't initialize into a data directory unless it's
+    completely empty. Therefore, we use a subdirectory of the mounted location: <code>/data/mysql</code>.
+</p>
+
+<h2>Scale the App</h2>
+<p>If you're using MySQL 8+ then you'll be consuming more memory, in this case it's best to add additional RAM to the virtual machine: </p>
+
+<div class="codeblock multiline">
+    <span># Give the virtual machine 1GB of ram</span>
+    <span>fly scale memory 1024</span>
+</div>
+
+<p>
+    If you're using MySQL 5.7, you likely won't need this much memory.
+</p>
+
+<p>
+    Additionally, if your Laravel application requires MySQL 8 and you wish to remain in the free tier of Fly, you can reduce MySQL 8's
+    memory usage with these start up flags. Edit your fly.toml file with the following:
+</p>
+
+<div class="codeblock multiline">
+    <span># Add the performance schema and buffer pool size flags</span>
+    <span># Note that --performance-schema=OFF is all one string</span>
+    <span>[experimental]</span>
+    <span class="ml-5">cmd = [</span>
+    <span class="ml-10">"--default-authentication-plugin", "mysql_native_password",</span>
+    <span class="ml-10">"--datadir", "/data/mysql",</span>
+    <span class="ml-10">"--performance-schema=OFF",</span>
+    <span class="ml-10">"--innodb-buffer-pool-size", "64M"</span>
+    <span class="ml-5">]</span>
+</div>
+
+<h3>Deploy the App</h3>
+
+<hr />
+
+<p>
+    Now we're ready to deploy the MySQL app, you can go ahead and run:
+</p>
+
+<div class="codeblock">
+    <span>fly deploy</span>
+</div>
+
+<p>
+    After a minute or so of MySQL initializing itself, you should have a Fly app running MySQL.
+</p>
+
+<p>
+    Your other Fly apps can access the MySQL service by it's name. In my case, I would use <code>my-laravel-app-mysql.internal</code> as the
+    hostname. Any app that needs to access the database should set the hostname and username as environment variables, and create a secret for the database password.
+</p>
+
+<h2>Mounting a persistent volume to the storage folder</h2>
+
+<h3>The Steps</h3>
+
+<hr />
+
+<div class="note">
+    <span>Caution! Mounting a Volume to a folder will initially erase any item it contains during the first time the Volume is mounted for the folder. </span>
+    <span>
+        For example, Laravel's storage folder contains subfolders: app, framework, and logs. Mounting the volume to the storage folder erases these
+        directories, and leaves behind a sole item paradoxically named as "lost+found".
+    </span>
+    <span>
+        But, you wouldn't want to only be left with "lost+found" in your storage folder. You'd want to still have the necessary files and directories in there
+        for successful session, views, caching, and file storage compliance with Laravel's default configuration.
+    </span>
+</div>
+
+<ol>
+    <li>
+        Make sure you're in the same directory as your fly.toml configuration file.
+        <div class="codeblock">
+            <span class="dollar-terminal">$</span>
+            <span class="terminal-command">cd</span>
+            <span>your-configured-laravel-app</span>
+        </div>
+    </li>
+    <li>
+        Create a volume, you'll be attaching this later on to your Laravel Fly App's storage directory
+        <div class="codeblock">
+            <span class="dollar-terminal">$</span>
+            <span>fly volumes create storage_vol --region ams --size 20</span>
+        </div>
+    </li>
+    <li>
+        Revise your Laravel Fly App's <code>fly.toml</code> file to mount the volume created for your storage directory,
+        and connect with your MySQL database:
+        <div class="codeblock">
+            <span>[mounts]</span>
+            <span>source="storage_vol"</span>
+            <span>destination="/var/www/html/storage"</span>
+        </div>
+    </li>
+    <li>
+        To fix the little storage-content-erasure issue as stated in the callout above, please go ahead and make a copy of your storage folder in a
+        "backup" folder. You can name this directory "storage_".
+        <div class="codeblock">
+            <span class="dollar-terminal">$</span>
+            <span class="terminal-command">cd</span>
+            <span>storage storage_</span>
+        </div>
+        You'll later use this folder to copy over its contents to the volumized storage folder.
+    </li>
+    <li>
+        Next create a <a href="https://fly.io/docs/laravel/the-basics/customizing-deployments/">Startup Script</a> that will initialize the volumized storage folder's contents.
+        <div class="codeblock">
+            <span class="dollar-terminal">$</span>
+            <span class="terminal-command">cd</span>
+            <span>.fly/scripts/1_storage_init.sh</span>
+        </div>
+
+        <div class="side-note">
+            Side Note: Start up scripts are run in numeric-alphabetical order. Naming 1_storage_init.sh makes sure it is the first script run.
+            Otherwise, naming the file as storage_init.sh alone would've moved the caches.sh script above it, and would've executed before storage
+            initialization happened. One of the commands in the caches.sh will not have worked properly, due to a lack of properly initialized storage directory.
+        </div>
+    </li>
+</ol>
+
+<h5>On to the content of the Start Up script:</h5>
+
+<div class="codeblock">
+    <span>FOLDER=/var/www/html/storage/app</span>
+    <span>if [ ! -d "$FOLDER" ]; then</span>
+    <span>
+        <span class="terminal-command">echo</span>
+        "$FOLDER is not a directory, copying storage_ content to storage"</span>
+    <span>
+        <span class="terminal-command">cp</span>
+        -r /var/www/html/storage_/. /var/www/html/storage
+    </span>
+    <span>
+        <span class="terminal-command">echo</span>
+        "deleting storage_..."
+    </span>
+    <span>
+        <span class="terminal-command">rm</span>
+        -rf /var/www/html/storage_
+    </span>
+    <span>fi</span>
+</div>
+
+<div class="side-note">
+    <span>So what happened above?</span>
+    <ul>
+        <li>The condition statement checks if the app folder does not exist in the volumized storage folder.
+            If it does not exist, it copies over the contents of the storage_ folder to the volumized storage folder. </li>
+    </ul>
+</div>
+
+<h5>Finally, deploy your Laravel Fly App!</h5>
+
+<div class="codeblock">
+    <span>
+        <span class="dollar-terminal">$</span>
+        fly deploy
+    </span>
+</div>
+
+<h2>Configuring a custom domain and certificate</h2>
+
+<hr />
+
+<h3>Setting up A and AAAA records</h3>
+
+<hr />
+
+<p>
+    Run <code>flyctl ips list</code> to see your app's addresses, you should see something like this:
+</p>
+
+<div class="codeblock">
+    <div>
+        <span class="dollar-terminal">$</span>
+        <span>flyctl ips list</span>
+    </div>
+    <div>
+        <span>TYPE</span>
+        <span>ADDRESS</span>
+        <span>CREATED AT</span>
+    </div>
+    <div>
+        <span>V4</span>
+        <span>77.83.143.105</span>
+        <span>2020-03-02T14:59:13Z</span>
+    </div>
+    <div>
+        <span>v6</span>
+        <span>2a09:8280:1:659f:6cb7:4925:6bfd:90a3</span>
+        <span>2020-03-02T14:59:13Z</span>
+    </div>
+</div>
+
+<p>
+    In your domain registrar portal, you'll then need to create an A record pointing to your v4 address and an AAAA record pointing to your v6 address. You can then make this an Apex domain as needed.
+</p>
+
+<h3>Adding the Certificate</h3>
+
+<p>
+    Once you've configured your DNS records in your registrar portal, you can add the custom domain to the application's certificates:
+</p>
+
+<div class="codeblock">
+    <span class="dollar-terminal">$</span>
+    <span>flyctl certs create example.com</span>
+</div>
+
+<p>
+    If you're adding a wildcard domain, make sure to place quotes around the hostname to avoid inadvertent shell expansion:
+</p>
+
+<div class="codeblock">
+    <span class="dollar-terminal">$</span>
+    <span>flyctl certs create "*.example.com"</span>
+</div>
+
+<p>
+    Running either of these commands will start the process of validating your domain and generating certificates. You can check the progress of this by running:
+</p>
+
+<div class="codeblock">
+    <div>
+        <span class="dollar-terminal">$</span>
+        <span>flyctl certs create show example.com</span>
+    </div>
+    <div>
+        <span>Hostname</span>
+        <span>= example.com</span>
+    </div>
+    <div>
+        <span>Configured</span>
+        <span>= true</span>
+    </div>
+    <div>
+        <span>Issued</span>
+        <span>= rsa,ecdsa</span>
+    </div>
+    <div>
+        <span>Certificate Authority</span>
+        <span>= lets_encrypt</span>
+    </div>
+    <div>
+        <span>DNS Provider</span>
+        <span>= dnsimple</span>
+    </div>
+    <div>
+        <span>DNS Validation Instructions</span>
+        <span></span>
+    </div>
+    <div>
+        <span>DNS Validation Hostname</span>
+        <span></span>
+    </div>
+    <div>
+        <span>DNS Validation Target</span>
+        <span></span>
+    </div>
+    <div>
+        <span>Source</span>
+        <span></span>
+    </div>
+    <div>
+        <span>Created At</span>
+        <span></span>
+    </div>
+    <div>
+        <span>Status</span>
+        <span></span>
+    </div>
+</div>
+
+
+
+

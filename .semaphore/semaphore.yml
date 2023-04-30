@@ -4,19 +4,62 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu2004
-
 blocks:
   - name: Test
     task:
       jobs:
-        - name: Test
+        - name: Composer
           commands:
             - checkout
             - cache restore
             - composer install
+            - npm install
             - cache store
             - cp .env.example .env
-            - php artisan key:generate
-            - mkdir -p database
-            - touch database/database.sqlite
+            - 'php artisan key:generate'
+  - name: Code Analysis
+    task:
+      jobs:
+        - name: PHP Mess Detector
+          commands:
+            - php vendor/bin/phpmd app/ text phpmd_ruleset.xml
+        - name: PHP Code Sniffer
+          commands:
+            - php vendor/bin/phpcs app --report-full --standard=PSR2
+        - name: PHP Copy / Paste Detector
+          commands:
+            - 'curl -L https://phar.phpunit.de/phpcpd.phar -o phpcpd.phar'
+            - php phpcpd.phar app/ --min-lines=50
+  - name: Unit Tests
+    task:
+      jobs:
+        - name: Unit Tests
+          commands:
+            - checkout
+            - cache restore
+            - composer install
+            - npm install
             - ./vendor/bin/phpunit
+  - name: Browser Tests
+    task:
+      jobs:
+        - name: Laravel Dusk
+          commands:
+            - checkout
+            - cp .env.example .env
+            - touch database/database.sqlite
+            - cache restore
+            - composer install
+            - npm install
+            - 'php artisan key:generate'
+            - 'php artisan dusk:update --detect'
+            - php artisan serve --env=dusk.local --port=8010 &
+            - php artisan dusk
+  - name: Security Tests
+    task:
+      jobs:
+        - name: Security Checker
+          commands:
+            - checkout
+            - 'docker pull solune/symfony:7.4-cli'
+            - 'docker run --rm -v $(pwd):$(pwd) -w $(pwd) solune/symfony:7.4-cli symfony check:security'
